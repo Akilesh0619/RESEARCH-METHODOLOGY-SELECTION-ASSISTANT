@@ -1,6 +1,12 @@
 # Research Methodology Selection Assistant (MethodAssist)
 
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen?logo=github)](https://akilesh0619.github.io/RESEARCH-METHODOLOGY-SELECTION-ASSISTANT/)
+[![Tests](https://img.shields.io/badge/Pytest-28%20Passed-success)](#)
+
+🌐 **Live GitHub Pages URL**: **[https://akilesh0619.github.io/RESEARCH-METHODOLOGY-SELECTION-ASSISTANT/](https://akilesh0619.github.io/RESEARCH-METHODOLOGY-SELECTION-ASSISTANT/)**
+
 An intelligent, rule-based expert decision support system built to assist academic students and researchers in selecting the most appropriate research methodologies for their thesis, capstone projects, and dissertations.
+
 
 Featuring 100% transparent, deterministic scoring with textbook citations (Creswell, Kothari, Yin, Saunders) and peer faculty validation audits.
 
