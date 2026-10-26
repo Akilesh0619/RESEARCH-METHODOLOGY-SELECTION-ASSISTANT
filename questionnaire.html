@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionnaire - MethodAssist</title>
+  <meta name="description" content="Transparent, rule-based recommendation assistant for academic research methodologies with faculty validation.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  
+  <!-- Navigation Header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-2">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-custom" href="index.html">
+        <i class="bi bi-diagram-3-fill fs-4 text-primary"></i>
+        <span>MethodAssist</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+          <li class="nav-item">
+            <a class="nav-link " href="index.html">
+              <i class="bi bi-house me-1"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="kb.html">
+              <i class="bi bi-book me-1"></i> Knowledge Base
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="compare.html">
+              <i class="bi bi-arrow-left-right me-1"></i> Compare
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary fw-semibold active" href="questionnaire.html">
+              <i class="bi bi-magic me-1"></i> Get Recommendations
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="dashboard.html">
+              <i class="bi bi-graph-up me-1"></i> Validation Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="rules.html">
+              <i class="bi bi-sliders me-1"></i> Rules Catalog
+            </a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2">
+          <a href="https://github.com/Akilesh0619/RESEARCH-METHODOLOGY-SELECTION-ASSISTANT" target="_blank" class="btn btn-outline-dark btn-sm d-flex align-items-center gap-1">
+            <i class="bi bi-github"></i>
+            <span>GitHub Repository</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <main class="py-4">
+    <div class="container">
+      
+<div class="row justify-content-center">
+  <div class="col-lg-9 col-xl-8">
+    
+    <div class="text-center mb-4">
+      <h2 class="fw-bold mb-1">Study Design Questionnaire</h2>
+      <p class="text-muted">Answer questions across 11 methodological dimensions to receive instant rule-based recommendations.</p>
+    </div>
+
+    <!-- Stepper Indicator -->
+    <div class="wizard-step-indicator mb-4">
+      <div class="text-center">
+        <div class="wizard-step-node active" id="node1">1</div>
+        <div class="small fw-semibold mt-1">Core Goals</div>
+      </div>
+      <div class="text-center">
+        <div class="wizard-step-node" id="node2">2</div>
+        <div class="small fw-semibold mt-1">Resources</div>
+      </div>
+      <div class="text-center">
+        <div class="wizard-step-node" id="node3">3</div>
+        <div class="small fw-semibold mt-1">Context & Ethics</div>
+      </div>
+    </div>
+
+    <!-- Form Wizard -->
+    <form id="wizardForm" class="custom-card p-4 p-md-5">
+      
+      <!-- STEP 1 -->
+      <div id="step1" class="wizard-pane">
+        <h4 class="fw-bold mb-3 text-primary"><i class="bi bi-compass me-2"></i>Step 1: Core Research Goals</h4>
+        <div class="row g-3 mb-4">
+          <div class="col-md-7">
+            <label class="form-label fw-semibold">Study Title / Topic</label>
+            <input type="text" id="study_title" class="form-control" value="Impact of AI Feedback on Software Engineering Productivity" required>
+          </div>
+          <div class="col-md-5">
+            <label class="form-label fw-semibold">Researcher Name</label>
+            <input type="text" id="student_name" class="form-control" value="Akilesh Student">
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">1. Primary Research Objective</label>
+          <div class="row g-2">
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block cursor-pointer"><input type="radio" name="research_objective" value="explore" class="form-check-input me-2"> <strong>Explore</strong><div class="small text-muted">Investigate emerging phenomena with little prior theory.</div></label>
+            </div>
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block cursor-pointer"><input type="radio" name="research_objective" value="describe" class="form-check-input me-2"> <strong>Describe</strong><div class="small text-muted">Characterize frequencies, distributions, or characteristics.</div></label>
+            </div>
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block cursor-pointer"><input type="radio" name="research_objective" value="explain_test_hypothesis" checked class="form-check-input me-2"> <strong>Explain / Test Hypothesis</strong><div class="small text-muted">Examine causal relationships and test specific hypotheses.</div></label>
+            </div>
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block cursor-pointer"><input type="radio" name="research_objective" value="build_evaluate_artifact" class="form-check-input me-2"> <strong>Build & Evaluate Artifact</strong><div class="small text-muted">Develop and evaluate algorithms, software, or tools.</div></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">2. Type of Primary Evidence / Data</label>
+          <div class="row g-2">
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="data_type" value="numerical" checked class="form-check-input me-2"> <strong>Numerical</strong></label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="data_type" value="textual_narrative" class="form-check-input me-2"> <strong>Textual / Narrative</strong></label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="data_type" value="both" class="form-check-input me-2"> <strong>Both (Mixed)</strong></label></div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">3. Researcher Control Over Variables & Environment</label>
+          <div class="row g-2">
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="control_over_variables" value="full" checked class="form-check-input me-2"> <strong>Full Control</strong></label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="control_over_variables" value="partial" class="form-check-input me-2"> <strong>Partial Control</strong></label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="control_over_variables" value="none" class="form-check-input me-2"> <strong>None (Observational)</strong></label></div>
+          </div>
+        </div>
+
+        <div class="text-end">
+          <button type="button" class="btn btn-primary px-4" onclick="goToStep(2)">Next: Resources <i class="bi bi-arrow-right ms-1"></i></button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="step2" class="wizard-pane d-none">
+        <h4 class="fw-bold mb-3 text-primary"><i class="bi bi-hourglass-split me-2"></i>Step 2: Practical Resources</h4>
+        
+        <div class="mb-4">
+          <label class="form-label fw-semibold">4. Accessible Participant / Sample Size</label>
+          <div class="row g-2">
+            <div class="col-md-3"><label class="custom-card p-3 d-block"><input type="radio" name="sample_size_available" value="under_10" class="form-check-input me-2"> Under 10</label></div>
+            <div class="col-md-3"><label class="custom-card p-3 d-block"><input type="radio" name="sample_size_available" value="10_to_30" class="form-check-input me-2"> 10 to 30</label></div>
+            <div class="col-md-3"><label class="custom-card p-3 d-block"><input type="radio" name="sample_size_available" value="30_to_100" checked class="form-check-input me-2"> 30 to 100</label></div>
+            <div class="col-md-3"><label class="custom-card p-3 d-block"><input type="radio" name="sample_size_available" value="over_100" class="form-check-input me-2"> Over 100</label></div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">5. Available Time Horizon</label>
+          <div class="row g-2">
+            <div class="col-md-3"><label class="custom-card p-3 d-block"><input type="radio" name="time_available" value="under_1_month" class="form-check-input me-2"> &lt; 1 month</label></div>
+            <div class="col-md-3"><label class="custom-card p-3 d-block"><input type="radio" name="time_available" value="1_to_3_months" class="form-check-input me-2"> 1-3 months</label></div>
+            <div class="col-md-3"><label class="custom-card p-3 d-block"><input type="radio" name="time_available" value="3_to_6_months" checked class="form-check-input me-2"> 3-6 months</label></div>
+            <div class="col-md-3"><label class="custom-card p-3 d-block"><input type="radio" name="time_available" value="over_6_months" class="form-check-input me-2"> &gt; 6 months</label></div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">6. Budget & Financial Resources</label>
+          <div class="row g-2">
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="budget" value="low" class="form-check-input me-2"> Low / Nil</label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="budget" value="medium" checked class="form-check-input me-2"> Medium</label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="budget" value="high" class="form-check-input me-2"> High</label></div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-secondary" onclick="goToStep(1)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+          <button type="button" class="btn btn-primary px-4" onclick="goToStep(3)">Next: Context & Ethics <i class="bi bi-arrow-right ms-1"></i></button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div id="step3" class="wizard-pane d-none">
+        <h4 class="fw-bold mb-3 text-primary"><i class="bi bi-shield-lock me-2"></i>Step 3: Context & Ethics</h4>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">7. Participant Access</label>
+          <div class="row g-2">
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="participant_access" value="easy" checked class="form-check-input me-2"> Easy Direct Access</label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="participant_access" value="difficult" class="form-check-input me-2"> Difficult / Gated</label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="participant_access" value="none_secondary_only" class="form-check-input me-2"> Secondary Data Only</label></div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">8. Academic Domain</label>
+          <select id="domain" class="form-select">
+            <option value="engineering" selected>Engineering / Computer Science</option>
+            <option value="management">Management / Business</option>
+            <option value="education">Education</option>
+            <option value="health">Health / Biomedical</option>
+            <option value="social_science">Social Sciences</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-semibold">9. Ethical Sensitivity</label>
+          <div class="row g-2">
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="ethical_sensitivity" value="low" checked class="form-check-input me-2"> Low</label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="ethical_sensitivity" value="medium" class="form-check-input me-2"> Medium</label></div>
+            <div class="col-md-4"><label class="custom-card p-3 d-block"><input type="radio" name="ethical_sensitivity" value="high" class="form-check-input me-2"> High</label></div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-secondary" onclick="goToStep(2)"><i class="bi bi-arrow-left me-1"></i> Back</button>
+          <button type="button" class="btn btn-success btn-lg px-4" onclick="submitAssessment()"><i class="bi bi-check2-circle me-1"></i> Calculate Recommendations</button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- RESULTS DISPLAY CONTAINER -->
+    <div id="resultsContainer" class="d-none mt-5"></div>
+
+  </div>
+</div>
+
+    </div>
+  </main>
+
+  
+  <!-- Global Footer -->
+  <footer class="bg-white border-top py-4 mt-auto">
+    <div class="container text-center text-muted small">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-md-start mb-2 mb-md-0">
+          <strong>Research Methodology Selection Assistant</strong> • College Mini Project
+          <br>
+          <span class="text-secondary">Transparent Rule-Based Engine (No ML / No LLMs) • Citations from Creswell, Kothari, Yin, Saunders</span>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <span class="badge bg-light text-dark border me-2"><i class="bi bi-shield-check text-success"></i> Deterministic Engine</span>
+          <span class="badge bg-light text-dark border"><i class="bi bi-patch-check text-primary"></i> GitHub Pages Live</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/engine.js"></script>
+  
+<script>
+  function goToStep(step) {
+    [1, 2, 3].forEach(s => {
+      document.getElementById('step' + s).classList.toggle('d-none', s !== step);
+      const node = document.getElementById('node' + s);
+      node.classList.toggle('active', s === step);
+      node.classList.toggle('completed', s < step);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function submitAssessment() {
+    const getVal = (name) => {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : '';
+    };
+
+    const inputs = {
+      study_title: document.getElementById('study_title').value,
+      student_name: document.getElementById('student_name').value,
+      research_objective: getVal('research_objective'),
+      data_type: getVal('data_type'),
+      control_over_variables: getVal('control_over_variables'),
+      sample_size_available: getVal('sample_size_available'),
+      time_available: getVal('time_available'),
+      budget: getVal('budget'),
+      participant_access: getVal('participant_access'),
+      domain: document.getElementById('domain').value,
+      ethical_sensitivity: getVal('ethical_sensitivity')
+    };
+
+    const result = runRecommendationEngine(inputs);
+    displayResults(result);
+  }
+
+  function displayResults(res) {
+    const container = document.getElementById('resultsContainer');
+    container.classList.remove('d-none');
+
+    let warningsHtml = '';
+    if (res.general_warnings && res.general_warnings.length > 0) {
+      warningsHtml = res.general_warnings.map(w => `
+        <div class="alert alert-warning py-2 px-3 small mb-2 d-flex align-items-center">
+          <i class="bi bi-exclamation-triangle-fill text-warning me-2 fs-5"></i>
+          <div>${w}</div>
+        </div>
+      `).join('');
+    }
+
+    container.innerHTML = `
+      <div class="custom-card p-4 p-md-5 mb-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div>
+            <span class="badge bg-primary text-uppercase px-3 py-1 mb-2"><i class="bi bi-cpu-fill me-1"></i> Recommendation Report</span>
+            <h3 class="fw-bold mb-1">${res.study_title}</h3>
+            <span class="small text-muted"><i class="bi bi-person me-1"></i>Researcher: <strong>${res.student_name}</strong></span>
+          </div>
+          <button class="btn btn-outline-secondary btn-sm" onclick="window.print()"><i class="bi bi-printer me-1"></i> Print / PDF</button>
+        </div>
+        ${warningsHtml}
+      </div>
+
+      <div class="mb-4">
+        <h4 class="fw-bold mb-3"><i class="bi bi-award-fill text-warning me-2"></i>Top 3 Recommended Methodologies</h4>
+        <div class="row g-4">
+          ${res.top_methods.map((m, idx) => `
+            <div class="col-lg-4">
+              <div class="custom-card p-4 h-100 d-flex flex-column border-top border-4 ${idx === 0 ? 'border-primary' : idx === 1 ? 'border-info' : 'border-secondary'}">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="badge ${idx === 0 ? 'bg-primary' : idx === 1 ? 'bg-info text-dark' : 'bg-secondary'} rounded-pill px-3 py-1 fw-bold">Rank #${m.rank}</span>
+                  <span class="badge badge-${m.category} text-capitalize">${m.category}</span>
+                </div>
+                <h4 class="fw-bold mb-2">${m.method_name}</h4>
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between small mb-1">
+                    <span>Suitability Match:</span>
+                    <strong class="text-success">${m.match_percentage}%</strong>
+                  </div>
+                  <div class="match-progress">
+                    <div class="h-100 ${m.match_percentage > 70 ? 'match-bar-high' : 'match-bar-med'}" style="width: ${m.match_percentage}%;"></div>
+                  </div>
+                </div>
+                <p class="small text-muted mb-3">${m.description}</p>
+                ${m.why_this_method && m.why_this_method.length > 0 ? `
+                  <div class="bg-light p-2 rounded small mt-auto">
+                    <span class="fw-semibold text-primary d-block mb-1"><i class="bi bi-check2-circle me-1"></i>Why Recommended:</span>
+                    <ul class="mb-0 ps-3">
+                      ${m.why_this_method.map(r => `<li>${r}</li>`).join('')}
+                    </ul>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-outline-primary" onclick="goToStep(1)">
+          <i class="bi bi-arrow-counterclockwise me-1"></i> Modify Answers & Re-test
+        </button>
+      </div>
+    `;
+
+    container.scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>

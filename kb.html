@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Base - MethodAssist</title>
+  <meta name="description" content="Transparent, rule-based recommendation assistant for academic research methodologies with faculty validation.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  
+  <!-- Navigation Header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-2">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-custom" href="index.html">
+        <i class="bi bi-diagram-3-fill fs-4 text-primary"></i>
+        <span>MethodAssist</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+          <li class="nav-item">
+            <a class="nav-link " href="index.html">
+              <i class="bi bi-house me-1"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="kb.html">
+              <i class="bi bi-book me-1"></i> Knowledge Base
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="compare.html">
+              <i class="bi bi-arrow-left-right me-1"></i> Compare
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary fw-semibold " href="questionnaire.html">
+              <i class="bi bi-magic me-1"></i> Get Recommendations
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="dashboard.html">
+              <i class="bi bi-graph-up me-1"></i> Validation Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="rules.html">
+              <i class="bi bi-sliders me-1"></i> Rules Catalog
+            </a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2">
+          <a href="https://github.com/Akilesh0619/RESEARCH-METHODOLOGY-SELECTION-ASSISTANT" target="_blank" class="btn btn-outline-dark btn-sm d-flex align-items-center gap-1">
+            <i class="bi bi-github"></i>
+            <span>GitHub Repository</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <main class="py-4">
+    <div class="container">
+      
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1"><i class="bi bi-book text-primary me-2"></i>Research Methodology Knowledge Base</h2>
+    <p class="text-muted mb-0">Explore 20 peer-reviewed research methodologies spanning quantitative, qualitative, and mixed paradigms.</p>
+  </div>
+  <a href="compare.html" class="btn btn-outline-primary mt-3 mt-md-0">
+    <i class="bi bi-arrow-left-right me-1"></i> Side-by-Side Compare
+  </a>
+</div>
+
+<!-- Filter Bar -->
+<div class="filter-bar mb-4">
+  <div class="row g-3 align-items-center">
+    <div class="col-md-7">
+      <div class="d-flex flex-wrap gap-2 align-items-center" id="categoryFilters">
+        <span class="text-muted small fw-semibold me-2">Category:</span>
+        <button class="btn btn-sm btn-primary rounded-pill filter-btn" data-cat="all">All (20)</button>
+        <button class="btn btn-sm btn-outline-primary rounded-pill filter-btn" data-cat="quantitative">Quantitative (8)</button>
+        <button class="btn btn-sm btn-outline-success rounded-pill filter-btn" data-cat="qualitative">Qualitative (7)</button>
+        <button class="btn btn-sm btn-outline-info text-dark rounded-pill filter-btn" data-cat="mixed">Mixed Methods (5)</button>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="input-group">
+        <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+        <input type="text" id="kbSearch" class="form-control" placeholder="Search by name, technique, or keyword...">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Methods Cards Grid -->
+<div class="row g-4" id="methodsGrid"></div>
+
+    </div>
+  </main>
+
+  
+  <!-- Global Footer -->
+  <footer class="bg-white border-top py-4 mt-auto">
+    <div class="container text-center text-muted small">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-md-start mb-2 mb-md-0">
+          <strong>Research Methodology Selection Assistant</strong> • College Mini Project
+          <br>
+          <span class="text-secondary">Transparent Rule-Based Engine (No ML / No LLMs) • Citations from Creswell, Kothari, Yin, Saunders</span>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <span class="badge bg-light text-dark border me-2"><i class="bi bi-shield-check text-success"></i> Deterministic Engine</span>
+          <span class="badge bg-light text-dark border"><i class="bi bi-patch-check text-primary"></i> GitHub Pages Live</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/engine.js"></script>
+  
+<script>
+  let activeCat = 'all';
+  let searchTerm = '';
+
+  function renderMethods() {
+    const grid = document.getElementById('methodsGrid');
+    const filtered = METHODS_DATA.filter(m => {
+      if (activeCat !== 'all' && m.category !== activeCat) return false;
+      if (searchTerm) {
+        const s = searchTerm.toLowerCase();
+        const nMatch = (m.name || '').toLowerCase().includes(s);
+        const dMatch = (m.description || '').toLowerCase().includes(s);
+        const bMatch = (m.best_used_when || '').toLowerCase().includes(s);
+        const tMatch = (m.typical_analysis_techniques || []).some(t => String(t).toLowerCase().includes(s));
+        if (!nMatch && !dMatch && !bMatch && !tMatch) return false;
+      }
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `<div class="col-12 text-center py-5 text-muted"><i class="bi bi-search fs-1 mb-2 d-block"></i>No methodologies matched your filter criteria.</div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(m => `
+      <div class="col-md-6 col-lg-4">
+        <div class="custom-card p-4 h-100 d-flex flex-column method-card border-top border-3 ${m.category === 'quantitative' ? 'border-primary' : m.category === 'qualitative' ? 'border-success' : 'border-info'}">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge badge-${m.category} text-capitalize">${m.category}</span>
+            <span class="small text-muted"><i class="bi bi-clock me-1"></i>${m.time_required === 'low' ? 'Quick' : m.time_required === 'med' ? 'Medium' : 'Extended'}</span>
+          </div>
+          <h5 class="fw-bold mb-2">${m.name}</h5>
+          <p class="text-muted small card-text mb-3">${m.description}</p>
+          
+          <div class="mb-3">
+            <span class="small fw-semibold text-dark d-block mb-1">Key Strengths:</span>
+            <ul class="small text-muted mb-0 ps-3">
+              ${(m.strengths || []).slice(0, 2).map(s => `<li>${s}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+            <span class="small text-muted">Cost: <strong class="text-capitalize text-dark">${m.cost}</strong></span>
+            <a href="compare.html?m1=${m.id}" class="btn btn-sm btn-outline-primary">Compare</a>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.className = 'btn btn-sm rounded-pill filter-btn ' + (b === e.target ? 'btn-primary' : 'btn-outline-secondary');
+      });
+      activeCat = e.target.getAttribute('data-cat');
+      renderMethods();
+    });
+  });
+
+  document.getElementById('kbSearch').addEventListener('input', (e) => {
+    searchTerm = e.target.value.trim();
+    renderMethods();
+  });
+
+  renderMethods();
+</script>
+
+</body>
+</html>
