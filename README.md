@@ -65,6 +65,26 @@ Open your browser and navigate to:
 
 ---
 
+## 🌐 1-Click Free Cloud Deployment
+
+This project includes pre-configured deployment blueprints (`render.yaml`, `Procfile`, `run.py`, `vercel.json`):
+
+### Option A: Render (Recommended for FastAPI)
+1. Go to [render.com](https://render.com) and log in with GitHub.
+2. Click **New +** -> **Web Service**.
+3. Select this repository: `Akilesh0619/RESEARCH-METHODOLOGY-SELECTION-ASSISTANT`.
+4. Render automatically detects `render.yaml` or set:
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+5. Click **Create Web Service**. Your free live URL will be ready in 1-2 minutes!
+
+### Option B: Railway / Koyeb
+1. Connect your GitHub repository.
+2. The included `Procfile` and `run.py` automatically start the application.
+
+---
+
+
 ## 🔑 Demo Login Accounts
 
 | Role | Username | Password | Access Scope |
