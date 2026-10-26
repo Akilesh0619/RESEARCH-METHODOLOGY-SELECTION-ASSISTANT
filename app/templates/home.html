@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Research Methodology Selection Assistant{% endblock %}
+
+{% block content %}
+<div class="hero-gradient mb-5">
+  <div class="row align-items-center">
+    <div class="col-lg-8">
+      <span class="badge bg-white text-primary fw-bold text-uppercase px-3 py-2 rounded-pill mb-3">
+        <i class="bi bi-mortarboard-fill me-1"></i> Academic Decision Support System
+      </span>
+      <h1 class="display-5 fw-bold mb-3">Research Methodology Selection Assistant</h1>
+      <p class="lead mb-4 text-white-50">
+        Empowering students and researchers to choose the most suitable research methodology for their thesis or project. Powered by a transparent, deterministic <strong>rule-based engine</strong> with explainable reasoning and faculty validation.
+      </p>
+      <div class="d-flex flex-wrap gap-3">
+        <a href="/questionnaire" class="btn btn-light btn-lg text-primary fw-bold shadow-sm px-4">
+          <i class="bi bi-play-circle-fill me-2"></i> Start Questionnaire
+        </a>
+        <a href="/kb" class="btn btn-outline-light btn-lg px-4">
+          <i class="bi bi-journal-bookmark me-2"></i> Explore 20 Methodologies
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-4 text-center mt-4 mt-lg-0">
+      <div class="p-4 bg-white bg-opacity-10 rounded-4 border border-white border-opacity-25 shadow-sm text-start">
+        <h6 class="text-uppercase text-white-50 fw-bold small mb-3">System Specifications</h6>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <i class="bi bi-database-check fs-2 text-warning"></i>
+          <div>
+            <div class="fw-bold fs-5">20 Curated Methods</div>
+            <div class="small text-white-50">Quantitative, Qualitative & Mixed</div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <i class="bi bi-diagram-3 fs-2 text-info"></i>
+          <div>
+            <div class="fw-bold fs-5">40+ Declarative Rules</div>
+            <div class="small text-white-50">100% Explainable & Transparent</div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <i class="bi bi-patch-check-fill fs-2 text-success"></i>
+          <div>
+            <div class="fw-bold fs-5">Faculty Validation</div>
+            <div class="small text-white-50">Peer-reviewed feedback & metrics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Workflow Steps -->
+<div class="mb-5">
+  <div class="text-center mb-4">
+    <h3 class="fw-bold">How MethodAssist Works</h3>
+    <p class="text-muted">A three-stage transparent pipeline designed for academic integrity</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="custom-card p-4 h-100">
+        <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex p-3 mb-3 fs-4">
+          <i class="bi bi-ui-checks"></i>
+        </div>
+        <h5 class="fw-bold">1. Study Questionnaire</h5>
+        <p class="text-muted small">
+          Answer an 11-dimension survey about your study's objectives, data type, participant access, sample size, time, and budget.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="custom-card p-4 h-100">
+        <div class="rounded-circle bg-success bg-opacity-10 text-success d-inline-flex p-3 mb-3 fs-4">
+          <i class="bi bi-cpu"></i>
+        </div>
+        <h5 class="fw-bold">2. Rule Engine Scoring</h5>
+        <p class="text-muted small">
+          An external declarative ruleset computes weighted boosts, penalties, and hard constraints to calculate normalized match percentages with detailed "Why" explanations.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="custom-card p-4 h-100">
+        <div class="rounded-circle bg-info bg-opacity-10 text-info d-inline-flex p-3 mb-3 fs-4">
+          <i class="bi bi-check2-circle"></i>
+        </div>
+        <h5 class="fw-bold">3. Faculty Review & Audit</h5>
+        <p class="text-muted small">
+          Faculty advisors review recommendations in real-time, approving or suggesting adjustments to build an empirical validation dashboard.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Knowledge Base Teaser -->
+<div class="custom-card p-4 p-md-5 mb-5">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h3 class="fw-bold mb-2">Explore the Research Knowledge Base</h3>
+      <p class="text-muted mb-4">
+        Need to understand the difference between <em>Grounded Theory</em>, <em>Phenomenology</em>, and <em>Case Study</em>? Compare sample size requirements, ethical hurdles, and typical analysis tools across 20 established methodologies.
+      </p>
+      <div class="d-flex flex-wrap gap-2">
+        <span class="badge badge-quantitative p-2"><i class="bi bi-graph-up me-1"></i> Quantitative Methods</span>
+        <span class="badge badge-qualitative p-2"><i class="bi bi-chat-quote me-1"></i> Qualitative Inquiries</span>
+        <span class="badge badge-mixed p-2"><i class="bi bi-shuffle me-1"></i> Mixed & Multi-Method</span>
+      </div>
+    </div>
+    <div class="col-md-4 text-md-end mt-4 mt-md-0">
+      <a href="/kb" class="btn btn-outline-primary btn-lg">
+        Browse Catalog <i class="bi bi-arrow-right ms-1"></i>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

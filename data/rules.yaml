@@ -1,0 +1,558 @@
+rules:
+  # =========================================================================
+  # 1. RESEARCH OBJECTIVE RULES
+  # =========================================================================
+  - id: "RULE_OBJ_EXPLORE_GT"
+    method_id: "grounded_theory"
+    conditions:
+      research_objective: "explore"
+    effect: "boost"
+    weight: 35
+    reason_text: "Grounded Theory is ideally suited for exploratory inquiries seeking to discover emergent conceptual patterns without preconceived hypotheses."
+
+  - id: "RULE_OBJ_EXPLORE_PHENOM"
+    method_id: "phenomenology"
+    conditions:
+      research_objective: "explore"
+    effect: "boost"
+    weight: 30
+    reason_text: "Phenomenology excels at exploring the lived essence and deep meanings of human experiences."
+
+  - id: "RULE_OBJ_EXPLORE_CASE"
+    method_id: "case_study"
+    conditions:
+      research_objective: "explore"
+    effect: "boost"
+    weight: 25
+    reason_text: "Case study research is highly effective for exploring contemporary phenomena deeply embedded within their real-world context."
+
+  - id: "RULE_OBJ_EXPLORE_ETHNO"
+    method_id: "ethnography"
+    conditions:
+      research_objective: "explore"
+    effect: "boost"
+    weight: 25
+    reason_text: "Ethnography provides deep exploratory immersion into cultural norms and social group behaviors."
+
+  - id: "RULE_OBJ_DESCRIBE_SURVEY"
+    method_id: "survey"
+    conditions:
+      research_objective: "describe"
+    effect: "boost"
+    weight: 35
+    reason_text: "Survey research is standard for describing prevailing characteristics, attitudes, and distributions across target populations."
+
+  - id: "RULE_OBJ_DESCRIBE_CROSS_SECT"
+    method_id: "cross_sectional_study"
+    conditions:
+      research_objective: "describe"
+    effect: "boost"
+    weight: 30
+    reason_text: "Cross-sectional designs provide rapid descriptive snapshots of population prevalence and demographic patterns."
+
+  - id: "RULE_OBJ_DESCRIBE_CONTENT"
+    method_id: "content_analysis"
+    conditions:
+      research_objective: "describe"
+    effect: "boost"
+    weight: 25
+    reason_text: "Content analysis provides systematic descriptive categorization of recorded communication artifacts and public text."
+
+  - id: "RULE_OBJ_HYPOTHESIS_EXPERIMENT"
+    method_id: "experiment"
+    conditions:
+      research_objective: "explain_test_hypothesis"
+    effect: "boost"
+    weight: 40
+    reason_text: "True experimental design is the benchmark method for testing causal hypotheses with maximum internal validity."
+
+  - id: "RULE_OBJ_HYPOTHESIS_QUASI"
+    method_id: "quasi_experiment"
+    conditions:
+      research_objective: "explain_test_hypothesis"
+    effect: "boost"
+    weight: 30
+    reason_text: "Quasi-experiments test causal hypotheses in naturalistic settings where true random assignment is infeasible."
+
+  - id: "RULE_OBJ_HYPOTHESIS_CORRELATIONAL"
+    method_id: "correlational_study"
+    conditions:
+      research_objective: "explain_test_hypothesis"
+    effect: "boost"
+    weight: 25
+    reason_text: "Correlational research evaluates directional hypotheses regarding statistical relationships between variables."
+
+  - id: "RULE_OBJ_PREDICT_CORRELATIONAL"
+    method_id: "correlational_study"
+    conditions:
+      research_objective: "predict"
+    effect: "boost"
+    weight: 40
+    reason_text: "Correlational regression designs directly assess predictive relationships between predictor and criterion variables."
+
+  - id: "RULE_OBJ_PREDICT_LONGITUDINAL"
+    method_id: "longitudinal_study"
+    conditions:
+      research_objective: "predict"
+    effect: "boost"
+    weight: 30
+    reason_text: "Longitudinal designs establish temporal precedence required for robust predictive and developmental forecasting."
+
+  - id: "RULE_OBJ_INTERVENTION_EXP"
+    method_id: "experiment"
+    conditions:
+      research_objective: "evaluate_intervention"
+    effect: "boost"
+    weight: 35
+    reason_text: "Randomized experimental trials isolate intervention treatment effects against a control baseline."
+
+  - id: "RULE_OBJ_INTERVENTION_QUASI"
+    method_id: "quasi_experiment"
+    conditions:
+      research_objective: "evaluate_intervention"
+    effect: "boost"
+    weight: 35
+    reason_text: "Quasi-experimental pre/post designs are ideally tailored for evaluating organizational, classroom, or community interventions."
+
+  - id: "RULE_OBJ_INTERVENTION_ACTION"
+    method_id: "action_research"
+    conditions:
+      research_objective: "evaluate_intervention"
+    effect: "boost"
+    weight: 35
+    reason_text: "Action research engages practitioners in iterative cycles of implementing and refining interventions directly within their practice."
+
+  - id: "RULE_OBJ_ARTIFACT_DSR"
+    method_id: "design_science_research"
+    conditions:
+      research_objective: "build_evaluate_artifact"
+    effect: "boost"
+    weight: 45
+    reason_text: "Design Science Research (DSR) is the established paradigm for creating and rigorously evaluating novel engineering, IT, or architectural artifacts."
+
+  - id: "RULE_OBJ_ARTIFACT_EXP"
+    method_id: "experiment"
+    conditions:
+      research_objective: "build_evaluate_artifact"
+    effect: "boost"
+    weight: 20
+    reason_text: "Controlled experiments benchmark the technical performance of novel engineered systems and algorithms."
+
+  - id: "RULE_OBJ_LITERATURE_SLR"
+    method_id: "systematic_literature_review"
+    conditions:
+      research_objective: "review_literature"
+    effect: "boost"
+    weight: 45
+    reason_text: "Systematic Literature Review (SLR/PRISMA) provides an auditable, comprehensive protocol for synthesizing existing empirical evidence."
+
+  - id: "RULE_OBJ_LITERATURE_META"
+    method_id: "meta_analysis"
+    conditions:
+      research_objective: "review_literature"
+    effect: "boost"
+    weight: 35
+    reason_text: "Meta-analysis quantitatively synthesizes numerical effect sizes across a body of published quantitative studies."
+
+  # =========================================================================
+  # 2. DATA TYPE RULES
+  # =========================================================================
+  - id: "RULE_DATA_NUMERICAL_QUANT_BOOST"
+    method_id: "experiment"
+    conditions:
+      data_type: "numerical"
+    effect: "boost"
+    weight: 25
+    reason_text: "Your focus on numerical metrics strongly aligns with quantitative experimental measurement."
+
+  - id: "RULE_DATA_NUMERICAL_SURVEY_BOOST"
+    method_id: "survey"
+    conditions:
+      data_type: "numerical"
+    effect: "boost"
+    weight: 20
+    reason_text: "Numerical rating scales and Likert inventories match standardized survey analysis."
+
+  - id: "RULE_DATA_NUMERICAL_QUAL_PENALTY"
+    method_id: "phenomenology"
+    conditions:
+      data_type: "numerical"
+    effect: "penalty"
+    weight: 30
+    reason_text: "Phenomenology requires deep rich narrative transcripts rather than strictly numerical data."
+
+  - id: "RULE_DATA_NUMERICAL_GT_PENALTY"
+    method_id: "grounded_theory"
+    conditions:
+      data_type: "numerical"
+    effect: "penalty"
+    weight: 25
+    reason_text: "Classic grounded theory relies heavily on rich qualitative text and theoretical coding memos."
+
+  - id: "RULE_DATA_TEXT_INTERVIEW_BOOST"
+    method_id: "semi_structured_interview"
+    conditions:
+      data_type: "textual_narrative"
+    effect: "boost"
+    weight: 30
+    reason_text: "Semi-structured interviews excel at eliciting nuanced, open-ended textual narratives from participants."
+
+  - id: "RULE_DATA_TEXT_FOCUS_BOOST"
+    method_id: "focus_group"
+    conditions:
+      data_type: "textual_narrative"
+    effect: "boost"
+    weight: 25
+    reason_text: "Focus group discussions generate dynamic collaborative textual transcripts and debate."
+
+  - id: "RULE_DATA_TEXT_EXP_PENALTY"
+    method_id: "experiment"
+    conditions:
+      data_type: "textual_narrative"
+    effect: "penalty"
+    weight: 35
+    reason_text: "True experiments require quantitative dependent variables rather than unstructured narrative text."
+
+  - id: "RULE_DATA_BOTH_MIXED_BOOST"
+    method_id: "mixed_methods"
+    conditions:
+      data_type: "both"
+    effect: "boost"
+    weight: 40
+    reason_text: "Collecting both numerical metrics and qualitative narratives is the foundation of Mixed Methods research."
+
+  - id: "RULE_DATA_BOTH_ACTION_BOOST"
+    method_id: "action_research"
+    conditions:
+      data_type: "both"
+    effect: "boost"
+    weight: 25
+    reason_text: "Action research frequently triangulates quantitative operational metrics with qualitative practitioner reflection."
+
+  # =========================================================================
+  # 3. CONTROL OVER VARIABLES
+  # =========================================================================
+  - id: "RULE_CTRL_FULL_EXP_BOOST"
+    method_id: "experiment"
+    conditions:
+      control_over_variables: "full"
+    effect: "boost"
+    weight: 35
+    reason_text: "Full control over extraneous variables enables randomized laboratory experimentation."
+
+  - id: "RULE_CTRL_NONE_EXP_EXCLUDE"
+    method_id: "experiment"
+    conditions:
+      control_over_variables: "none"
+    effect: "hard_exclude"
+    weight: 100
+    reason_text: "True experimental design cannot be conducted without the ability to manipulate and control experimental conditions."
+
+  - id: "RULE_CTRL_NONE_OBS_BOOST"
+    method_id: "observational_study"
+    conditions:
+      control_over_variables: "none"
+    effect: "boost"
+    weight: 30
+    reason_text: "Naturalistic observational studies capture behavior in authentic environments without artificial experimental control."
+
+  - id: "RULE_CTRL_NONE_CORR_BOOST"
+    method_id: "correlational_study"
+    conditions:
+      control_over_variables: "none"
+    effect: "boost"
+    weight: 25
+    reason_text: "Correlational studies observe natural covariation between variables without intervention or manipulation."
+
+  - id: "RULE_CTRL_PARTIAL_QUASI_BOOST"
+    method_id: "quasi_experiment"
+    conditions:
+      control_over_variables: "partial"
+    effect: "boost"
+    weight: 30
+    reason_text: "Quasi-experimental designs are tailored for situations where only partial control over treatment allocation is possible."
+
+  # =========================================================================
+  # 4. SAMPLE SIZE AVAILABILITY
+  # =========================================================================
+  - id: "RULE_SAMPLE_SMALL_SURVEY_EXCLUDE"
+    method_id: "survey"
+    conditions:
+      sample_size_available: "under_10"
+    effect: "hard_exclude"
+    weight: 100
+    reason_text: "A sample size of fewer than 10 participants lacks sufficient statistical power for survey research."
+
+  - id: "RULE_SAMPLE_SMALL_META_EXCLUDE"
+    method_id: "meta_analysis"
+    conditions:
+      sample_size_available: "under_10"
+    effect: "hard_exclude"
+    weight: 100
+    reason_text: "Meta-analysis requires statistical pooling across dozens of primary studies and cannot operate on a sample of under 10."
+
+  - id: "RULE_SAMPLE_SMALL_CASE_BOOST"
+    method_id: "case_study"
+    conditions:
+      sample_size_available: "under_10"
+    effect: "boost"
+    weight: 30
+    reason_text: "Case study research is optimized for small, bounded samples (1-5 units) analyzed in extreme depth."
+
+  - id: "RULE_SAMPLE_SMALL_PHENOM_BOOST"
+    method_id: "phenomenology"
+    conditions:
+      sample_size_available: "under_10"
+    effect: "boost"
+    weight: 30
+    reason_text: "Phenomenological inquiries intentionally use small, targeted samples (5-10 individuals) to distill universal essences."
+
+  - id: "RULE_SAMPLE_LARGE_SURVEY_BOOST"
+    method_id: "survey"
+    conditions:
+      sample_size_available: "over_100"
+    effect: "boost"
+    weight: 30
+    reason_text: "A large sample (>100) provides the statistical power needed for robust survey generalizations and regression."
+
+  - id: "RULE_SAMPLE_LARGE_CORR_BOOST"
+    method_id: "correlational_study"
+    conditions:
+      sample_size_available: "over_100"
+    effect: "boost"
+    weight: 25
+    reason_text: "Ample sample size enables multivariate regression and structural equation modeling."
+
+  - id: "RULE_SAMPLE_MID_INTERVIEW_BOOST"
+    method_id: "semi_structured_interview"
+    conditions:
+      sample_size_available: "10_to_30"
+    effect: "boost"
+    weight: 25
+    reason_text: "A sample of 10 to 30 participants is the sweet spot for achieving qualitative saturation in semi-structured interviews."
+
+  # =========================================================================
+  # 5. TIME CONSTRAINTS
+  # =========================================================================
+  - id: "RULE_TIME_SHORT_LONGITUDINAL_EXCLUDE"
+    method_id: "longitudinal_study"
+    conditions:
+      time_available: "under_1_month"
+    effect: "hard_exclude"
+    weight: 100
+    reason_text: "A longitudinal study requires tracking temporal trajectories over months or years; it cannot be completed in under 1 month."
+
+  - id: "RULE_TIME_SHORT_ETHNO_EXCLUDE"
+    method_id: "ethnography"
+    conditions:
+      time_available: "under_1_month"
+    effect: "hard_exclude"
+    weight: 100
+    reason_text: "Meaningful ethnographic immersion requires sustained field presence and cannot be accomplished in less than a month."
+
+  - id: "RULE_TIME_SHORT_CROSS_SECT_BOOST"
+    method_id: "cross_sectional_study"
+    conditions:
+      time_available: "under_1_month"
+    effect: "boost"
+    weight: 30
+    reason_text: "Cross-sectional point-in-time studies are well-suited for rapid completion under tight academic deadlines."
+
+  - id: "RULE_TIME_SHORT_CONTENT_BOOST"
+    method_id: "content_analysis"
+    conditions:
+      time_available: "under_1_month"
+    effect: "boost"
+    weight: 25
+    reason_text: "Content analysis of existing online or archival texts can be executed rapidly without scheduling human participant interviews."
+
+  - id: "RULE_TIME_LONG_LONGITUDINAL_BOOST"
+    method_id: "longitudinal_study"
+    conditions:
+      time_available: "over_6_months"
+    effect: "boost"
+    weight: 35
+    reason_text: "A timeframe exceeding 6 months makes a multi-wave longitudinal panel study feasible."
+
+  - id: "RULE_TIME_LONG_ETHNO_BOOST"
+    method_id: "ethnography"
+    conditions:
+      time_available: "over_6_months"
+    effect: "boost"
+    weight: 30
+    reason_text: "Extended calendar availability permits the sustained cultural field immersion that characterizes exemplary ethnography."
+
+  # =========================================================================
+  # 6. PARTICIPANT ACCESS
+  # =========================================================================
+  - id: "RULE_ACCESS_NONE_FIELD_EXCLUDE_INTERVIEW"
+    method_id: "semi_structured_interview"
+    conditions:
+      participant_access: "none_secondary_only"
+    effect: "hard_exclude"
+    weight: 100
+    reason_text: "Interviews require direct access to human informants and cannot be conducted with secondary data alone."
+
+  - id: "RULE_ACCESS_NONE_FIELD_EXCLUDE_FOCUS"
+    method_id: "focus_group"
+    conditions:
+      participant_access: "none_secondary_only"
+    effect: "hard_exclude"
+    weight: 100
+    reason_text: "Focus group discussions require in-person or live virtual group interactions with human participants."
+
+  - id: "RULE_ACCESS_NONE_FIELD_EXCLUDE_EXP"
+    method_id: "experiment"
+    conditions:
+      participant_access: "none_secondary_only"
+    effect: "hard_exclude"
+    weight: 100
+    reason_text: "Experimental human testing requires direct access to study subjects for intervention trials."
+
+  - id: "RULE_ACCESS_NONE_SLR_BOOST"
+    method_id: "systematic_literature_review"
+    conditions:
+      participant_access: "none_secondary_only"
+    effect: "boost"
+    weight: 40
+    reason_text: "When human participants are unavailable, synthesizing the existing empirical literature via SLR is ideal."
+
+  - id: "RULE_ACCESS_NONE_META_BOOST"
+    method_id: "meta_analysis"
+    conditions:
+      participant_access: "none_secondary_only"
+    effect: "boost"
+    weight: 35
+    reason_text: "Meta-analysis operates entirely on published quantitative secondary literature without requiring participant recruitment."
+
+  - id: "RULE_ACCESS_NONE_CONTENT_BOOST"
+    method_id: "content_analysis"
+    conditions:
+      participant_access: "none_secondary_only"
+    effect: "boost"
+    weight: 35
+    reason_text: "Content analysis of existing public documents or digital archives does not require participant recruitment."
+
+  # =========================================================================
+  # 7. EXISTING THEORY
+  # =========================================================================
+  - id: "RULE_THEORY_NONE_GT_BOOST"
+    method_id: "grounded_theory"
+    conditions:
+      existing_theory: "none"
+    effect: "boost"
+    weight: 40
+    reason_text: "When theoretical explanations are lacking, Grounded Theory is the method of choice to construct an inductive theory."
+
+  - id: "RULE_THEORY_ESTABLISHED_EXP_BOOST"
+    method_id: "experiment"
+    conditions:
+      existing_theory: "well_established"
+    effect: "boost"
+    weight: 25
+    reason_text: "Well-established theories provide the precise deductive hypotheses needed for controlled experimental tests."
+
+  - id: "RULE_THEORY_ESTABLISHED_CORR_BOOST"
+    method_id: "correlational_study"
+    conditions:
+      existing_theory: "well_established"
+    effect: "boost"
+    weight: 20
+    reason_text: "Mature theoretical models supply validated constructs and measurement instruments for quantitative correlation."
+
+  - id: "RULE_THEORY_ESTABLISHED_GT_PENALTY"
+    method_id: "grounded_theory"
+    conditions:
+      existing_theory: "well_established"
+    effect: "penalty"
+    weight: 25
+    reason_text: "Classic grounded theory is designed for theoretical discovery; testing established theories is better suited to deductive designs."
+
+  # =========================================================================
+  # 8. STUDY TIMEFRAME
+  # =========================================================================
+  - id: "RULE_TIMEFRAME_ONETIME_LONGITUDINAL_EXCLUDE"
+    method_id: "longitudinal_study"
+    conditions:
+      study_timeframe: "one_time"
+    effect: "hard_exclude"
+    weight: 100
+    reason_text: "A one-time cross-sectional snapshot is conceptually incompatible with a longitudinal study design."
+
+  - id: "RULE_TIMEFRAME_ONETIME_CROSS_BOOST"
+    method_id: "cross_sectional_study"
+    conditions:
+      study_timeframe: "one_time"
+    effect: "boost"
+    weight: 35
+    reason_text: "Cross-sectional research is designed specifically for point-in-time observational investigations."
+
+  - id: "RULE_TIMEFRAME_OVERTIME_LONGITUDINAL_BOOST"
+    method_id: "longitudinal_study"
+    conditions:
+      study_timeframe: "over_time"
+    effect: "boost"
+    weight: 40
+    reason_text: "Tracking phenomena over multiple chronological points directly fulfills the longitudinal methodology."
+
+  - id: "RULE_TIMEFRAME_OVERTIME_ACTION_BOOST"
+    method_id: "action_research"
+    conditions:
+      study_timeframe: "over_time"
+    effect: "boost"
+    weight: 30
+    reason_text: "Action research thrives across iterative temporal cycles of planning, executing, and evaluating over time."
+
+  # =========================================================================
+  # 9. ETHICAL SENSITIVITY & RISKS
+  # =========================================================================
+  - id: "RULE_ETHICS_HIGH_INTERVENTION_PENALTY"
+    method_id: "experiment"
+    conditions:
+      ethical_sensitivity: "high"
+    effect: "penalty"
+    weight: 20
+    reason_text: "High ethical vulnerability poses institutional review challenges when subjecting participants to experimental interventions."
+
+  - id: "RULE_ETHICS_HIGH_SECONDARY_BOOST"
+    method_id: "systematic_literature_review"
+    conditions:
+      ethical_sensitivity: "high"
+    effect: "boost"
+    weight: 20
+    reason_text: "Secondary literature synthesis mitigates risks of causing direct harm to vulnerable research subjects."
+
+  # =========================================================================
+  # 10. DOMAIN SPECIFICITY
+  # =========================================================================
+  - id: "RULE_DOMAIN_ENG_DSR_BOOST"
+    method_id: "design_science_research"
+    conditions:
+      domain: "engineering"
+    effect: "boost"
+    weight: 25
+    reason_text: "Engineering projects strongly favor artifact creation and technical prototype evaluation (Design Science Research)."
+
+  - id: "RULE_DOMAIN_MGMT_CASE_BOOST"
+    method_id: "case_study"
+    conditions:
+      domain: "management"
+    effect: "boost"
+    weight: 20
+    reason_text: "Management research frequently utilizes organizational case studies to investigate leadership and strategy in context."
+
+  - id: "RULE_DOMAIN_EDU_ACTION_BOOST"
+    method_id: "action_research"
+    conditions:
+      domain: "education"
+    effect: "boost"
+    weight: 25
+    reason_text: "Educational research benefits extensively from classroom-based action research conducted by teacher-practitioners."
+
+  - id: "RULE_DOMAIN_HEALTH_EXP_BOOST"
+    method_id: "experiment"
+    conditions:
+      domain: "health"
+    effect: "boost"
+    weight: 25
+    reason_text: "Health and medical sciences view randomized controlled experimental trials as the gold standard for evidence."

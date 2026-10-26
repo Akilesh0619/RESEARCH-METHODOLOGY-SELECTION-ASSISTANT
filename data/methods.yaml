@@ -1,0 +1,957 @@
+methods:
+  - id: survey
+    name: "Survey Research"
+    category: "quantitative"
+    status: "draft - needs faculty verification"
+    description: "A structured quantitative method used to systematically gather numerical data from a predefined sample of respondents to describe, compare, or explain characteristics, attitudes, opinions, or behaviors."
+    best_used_when: "When researchers aim to generalize findings from a representative sample to a larger population, describe prevailing attitudes, or test statistical relationships across demographic segments."
+    strengths:
+      - "High generalizability when using representative probability sampling"
+      - "Cost-effective and time-efficient for large, geographically dispersed samples"
+      - "Facilitates standardized, reproducible statistical comparisons"
+      - "Minimizes interviewer bias through standardized questionnaire instruments"
+    limitations:
+      - "Risk of non-response bias and low response rates"
+      - "Superficial data depth compared to open qualitative inquiries"
+      - "Susceptible to social desirability and self-reporting bias"
+      - "Inflexible once deployed; questions cannot be modified mid-study"
+    typical_data_collection:
+      - "Online digital questionnaires (Qualtrics, Google Forms)"
+      - "Self-administered paper questionnaires"
+      - "Structured telephone or face-to-face interviews"
+    typical_analysis_techniques:
+      - "Descriptive statistics (mean, median, standard deviation)"
+      - "Inferential tests (t-tests, ANOVA, Chi-Square)"
+      - "Regression modeling and factor analysis"
+    sample_size_guidance: "Typically 100+ respondents for statistical power; power analysis recommended for regression/factor analysis."
+    time_required: "med"
+    cost: "low"
+    ethical_considerations: "Informed consent, voluntary participation, guarantee of respondent anonymity/confidentiality, and secure data storage."
+    example_use_cases:
+      - domain: "education"
+        title: "Undergraduate Perceptions of AI Tutoring Tools"
+        scenario: "Administering a validated 5-point Likert questionnaire to 350 university students to evaluate their satisfaction, usability perceptions, and perceived academic benefits."
+      - domain: "management"
+        title: "Employee Hybrid-Work Satisfaction & Turnover Intention"
+        scenario: "Surveying 220 knowledge workers across IT firms to examine the statistical relationship between remote work flexibility and organizational commitment."
+    suitable_domains:
+      - "education"
+      - "management"
+      - "social science"
+      - "health"
+    references:
+      - author: "Creswell, J. W., & Creswell, J. D."
+        year: 2018
+        title: "Research Design: Qualitative, Quantitative, and Mixed Methods Approaches (5th ed.)"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Kothari, C. R."
+        year: 2004
+        title: "Research Methodology: Methods and Techniques (2nd ed.)"
+        publisher_or_journal: "New Age International Publishers"
+
+  - id: experiment
+    name: "True Experimental Design"
+    category: "quantitative"
+    status: "draft - needs faculty verification"
+    description: "A rigorous quantitative design that isolates cause-and-effect relationships through deliberate manipulation of an independent variable, random assignment of participants into experimental and control groups, and strict experimental control over extraneous variables."
+    best_used_when: "When the primary research objective is to test specific causal hypotheses with maximum internal validity under controlled settings."
+    strengths:
+      - "Gold standard for demonstrating unambiguous causality (cause-and-effect)"
+      - "High internal validity through random assignment and control groups"
+      - "High reproducibility and standardization across laboratory environments"
+    limitations:
+      - "Potential artificiality; findings may not easily translate to naturalistic environments (lower ecological validity)"
+      - "Strict ethical constraints regarding interventions that could harm participants"
+      - "Resource-intensive in laboratory setup, specialized instrumentation, and participant tracking"
+    typical_data_collection:
+      - "Direct physiological or behavioral sensor measurements"
+      - "Standardized pre-test and post-test assessments"
+      - "Automated software logging (latency, error rates, completion time)"
+    typical_analysis_techniques:
+      - "Independent-samples and paired t-tests"
+      - "Analysis of Variance (One-way and Factorial ANOVA)"
+      - "Analysis of Covariance (ANCOVA) for baseline adjustment"
+    sample_size_guidance: "30-100 participants partitioned across groups, determined via statistical power calculations (G*Power)."
+    time_required: "med"
+    cost: "med"
+    ethical_considerations: "Requires institutional review board (IRB) approval, strict risk mitigation, informed consent, and post-experiment participant debriefing."
+    example_use_cases:
+      - domain: "engineering"
+        title: "Code Review Speed Under Dark vs. Light IDE Themes"
+        scenario: "Randomly assigning 60 software developers to debug identical software modules using either dark or light theme to measure error identification latency."
+      - domain: "health"
+        title: "Efficacy of a Digital Mindfulness App on Cortisol Levels"
+        scenario: "Randomized controlled trial (RCT) with 80 stressed adults divided into app-guided meditation vs. waitlist control group over 4 weeks."
+    suitable_domains:
+      - "engineering"
+      - "health"
+      - "education"
+      - "social science"
+    references:
+      - author: "Campbell, D. T., & Stanley, J. C."
+        year: 1963
+        title: "Experimental and Quasi-Experimental Designs for Research"
+        publisher_or_journal: "Houghton Mifflin"
+      - author: "Creswell, J. W., & Creswell, J. D."
+        year: 2018
+        title: "Research Design: Qualitative, Quantitative, and Mixed Methods Approaches"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: quasi_experiment
+    name: "Quasi-Experimental Design"
+    category: "quantitative"
+    status: "draft - needs faculty verification"
+    description: "An empirical intervention study used to estimate the causal impact of an intervention on target populations without random assignment of participants, often using non-equivalent comparison groups or pre/post interrupted time-series."
+    best_used_when: "When researchers test an intervention in real-world educational, clinical, or organizational settings where true random assignment is impractical or unethical."
+    strengths:
+      - "Higher ecological and practical validity than artificial laboratory experiments"
+      - "Feasible in authentic classroom, clinical, or workplace environments"
+      - "Provides valuable causal evidence when random assignment cannot be justified"
+    limitations:
+      - "Lower internal validity than true experiments due to selection bias"
+      - "Potential confounding variables between non-equivalent control and treatment groups"
+      - "Requires sophisticated statistical controls (e.g., propensity score matching)"
+    typical_data_collection:
+      - "Pre-test and post-test performance evaluations"
+      - "Organizational key performance indicators (KPIs)"
+      - "Attendance, clinical outcome, or learning metric archives"
+    typical_analysis_techniques:
+      - "Difference-in-Differences (DiD) regression"
+      - "Repeated-measures ANOVA / ANCOVA"
+      - "Propensity Score Matching (PSM)"
+    sample_size_guidance: "30-100+ participants across intact cohorts or existing organizational units."
+    time_required: "med"
+    cost: "med"
+    ethical_considerations: "Ensuring control cohorts are not unfairly deprived of beneficial educational or healthcare interventions (waitlist designs recommended)."
+    example_use_cases:
+      - domain: "education"
+        title: "Impact of Flipped Classroom Pedagogy on Engineering Students"
+        scenario: "Comparing exam scores of Section A (flipped classroom) against Section B (traditional lecture) without randomly moving enrolled students."
+      - domain: "management"
+        title: "Effectiveness of a New Agile Coaching Framework"
+        scenario: "Measuring sprint velocity differences across two regional development centers before and after deploying an agile coach to one center."
+    suitable_domains:
+      - "education"
+      - "management"
+      - "health"
+      - "social science"
+    references:
+      - author: "Shadish, W. R., Cook, T. D., & Campbell, D. T."
+        year: 2002
+        title: "Experimental and Quasi-Experimental Designs for Generalized Causal Inference"
+        publisher_or_journal: "Wadsworth Cengage Learning"
+      - author: "Kothari, C. R."
+        year: 2004
+        title: "Research Methodology: Methods and Techniques"
+        publisher_or_journal: "New Age International Publishers"
+
+  - id: case_study
+    name: "Case Study Research"
+    category: "qualitative"
+    status: "draft - needs faculty verification"
+    description: "An in-depth empirical inquiry that investigates a contemporary phenomenon within its real-life context, especially when the boundaries between phenomenon and context are not clearly evident, utilizing multiple sources of evidence."
+    best_used_when: "When seeking to answer 'how' and 'why' questions about complex organizational, technological, or social events over which the investigator has little control."
+    strengths:
+      - "Rich, contextualized, deep qualitative insights"
+      - "Captures holistic and meaningful characteristics of real-life events"
+      - "Triangulates multiple evidentiary sources (interviews, documents, observations)"
+    limitations:
+      - "Limited statistical generalizability beyond the examined case boundaries"
+      - "Potential researcher subjectivity in evidence interpretation"
+      - "Time-consuming data collection and complex cross-case synthesis"
+    typical_data_collection:
+      - "In-depth semi-structured stakeholder interviews"
+      - "Archival records, internal policies, and email correspondence"
+      - "Field notes from direct on-site observations"
+    typical_analysis_techniques:
+      - "Pattern matching and thematic analysis"
+      - "Cross-case synthesis (for multi-case designs)"
+      - "Process tracing and chronological explanation building"
+    sample_size_guidance: "1 to 5 bounded cases; within-case sampling of 10-30 qualitative informants."
+    time_required: "high"
+    cost: "med"
+    ethical_considerations: "Protecting organizational proprietary confidentiality, anonymizing sensitive leadership decisions, and obtaining institutional consent."
+    example_use_cases:
+      - domain: "management"
+        title: "Cloud Migration Resistance in a Legacy Public Utility"
+        scenario: "Conducting a comprehensive 6-month single-case investigation of a public water utility transitioning its ERP system to the cloud."
+      - domain: "engineering"
+        title: "Post-Mortem of a Safety-Critical Autonomous Vehicle Software Failure"
+        scenario: "Deep-dive case analysis of telemetry, engineering tickets, and developer communications leading up to an autonomous driving incident."
+    suitable_domains:
+      - "management"
+      - "engineering"
+      - "education"
+      - "social science"
+    references:
+      - author: "Yin, R. K."
+        year: 2018
+        title: "Case Study Research and Applications: Design and Methods (6th ed.)"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Stake, R. E."
+        year: 1995
+        title: "The Art of Case Study Research"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: semi_structured_interview
+    name: "Semi-Structured Interviews"
+    category: "qualitative"
+    status: "draft - needs faculty verification"
+    description: "A qualitative data collection and inquiry method guided by an overarching topical interview protocol with open-ended prompts, permitting the researcher flexibility to probe emergent thoughts, clarify meaning, and explore tangential insights."
+    best_used_when: "When researchers require nuanced, individualized perspectives from key informants, subject matter experts, or participants about complex lived experiences or organizational decisions."
+    strengths:
+      - "Combines structural consistency with conversational exploratory flexibility"
+      - "Allows probing and real-time clarification of ambiguous answers"
+      - "Captures rich affective, personal, and context-specific narratives"
+    limitations:
+      - "Transcription and coding of audio data is labor-intensive"
+      - "Susceptible to interviewer bias and leading questions"
+      - "Non-generalizable in a strict statistical sense"
+    typical_data_collection:
+      - "Audio/video recorded one-on-one dialogue (in-person or Zoom/Teams)"
+      - "Interview guides with primary questions and probe questions"
+      - "Reflexive field notes and memos captured immediately post-interview"
+    typical_analysis_techniques:
+      - "Thematic analysis (Braun & Clarke framework)"
+      - "Qualitative Content Analysis"
+      - "Inter-coder reliability verification (Cohen's Kappa)"
+    sample_size_guidance: "12 to 30 participants, continuing until theoretical or data saturation is achieved."
+    time_required: "med"
+    cost: "low"
+    ethical_considerations: "Informed consent for audio recording, participant confidentiality, right to withdraw, and sensitive handling of personal disclosures."
+    example_use_cases:
+      - domain: "health"
+        title: "ICU Nurse Burnout During Surge Operations"
+        scenario: "Conducting 20 semi-structured interviews with senior critical-care nurses to understand coping mechanisms during prolonged emergency deployments."
+      - domain: "engineering"
+        title: "DevSecOps Adoption Barriers in Financial Institutions"
+        scenario: "Interviewing 16 chief information security officers (CISOs) to explore friction between software delivery speed and security compliance."
+    suitable_domains:
+      - "health"
+      - "management"
+      - "education"
+      - "social science"
+      - "engineering"
+    references:
+      - author: "Saunders, M., Lewis, P., & Thornhill, A."
+        year: 2019
+        title: "Research Methods for Business Students (8th ed.)"
+        publisher_or_journal: "Pearson Education"
+      - author: "Kothari, C. R."
+        year: 2004
+        title: "Research Methodology: Methods and Techniques"
+        publisher_or_journal: "New Age International Publishers"
+
+  - id: focus_group
+    name: "Focus Group Discussions"
+    category: "qualitative"
+    status: "draft - needs faculty verification"
+    description: "A moderated group interview method where a selected group of individuals discusses a designated topic, leveraging interactive group dynamics to uncover shared attitudes, contrasting norms, and collective perceptions."
+    best_used_when: "When group synergy and peer reaction help elicit viewpoints that might not emerge during solitary one-on-one interviews, such as product reactions or cultural attitudes."
+    strengths:
+      - "Group interaction stimulates recall and rich debate among peers"
+      - "Time-efficient way to collect viewpoints from multiple participants simultaneously"
+      - "Reveals collective agreements, controversies, and cultural vernacular"
+    limitations:
+      - "Dominant individuals may suppress minority or shy opinions"
+      - "Susceptible to groupthink and peer pressure conformism"
+      - "Limits confidentiality among participants in the group session"
+    typical_data_collection:
+      - "Multi-speaker audio/video recording of moderated discussions"
+      - "Co-moderator observational notes on body language and group dynamics"
+      - "Post-session participant evaluation sheets"
+    typical_analysis_techniques:
+      - "Thematic interaction analysis"
+      - "Framework analysis"
+      - "Conversational discourse mapping"
+    sample_size_guidance: "3 to 6 focus groups, each consisting of 6 to 10 participants (total 20-50 participants)."
+    time_required: "med"
+    cost: "med"
+    ethical_considerations: "Establishing ground rules for respecting participant privacy and mutual confidentiality within the group."
+    example_use_cases:
+      - domain: "management"
+        title: "Customer Acceptance of AI Customer Service Chatbots"
+        scenario: "Hosting 4 focus groups of e-commerce consumers to observe spontaneous reactions to automated dispute resolution tools."
+      - domain: "education"
+        title: "First-Generation College Student Transition Programs"
+        scenario: "Conducting 3 focus groups with incoming freshmen to understand collective emotional barriers and social integration needs."
+    suitable_domains:
+      - "management"
+      - "education"
+      - "social science"
+      - "health"
+    references:
+      - author: "Krueger, R. A., & Casey, M. A."
+        year: 2014
+        title: "Focus Groups: A Practical Guide for Applied Research (5th ed.)"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Creswell, J. W., & Creswell, J. D."
+        year: 2018
+        title: "Research Design: Qualitative, Quantitative, and Mixed Methods Approaches"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: ethnography
+    name: "Ethnographic Research"
+    category: "qualitative"
+    status: "draft - needs faculty verification"
+    description: "An immersive qualitative design where the researcher engages in sustained participant observation within a natural cultural setting or community to examine shared patterns of values, behaviors, language, and rituals over an extended period."
+    best_used_when: "When researchers need to understand unwritten cultural practices, workplace micro-cultures, or community norms from an insider (emic) perspective."
+    strengths:
+      - "Unmatched ecological validity and depth of contextual understanding"
+      - "Uncovers implicit, tacit knowledge that participants cannot articulate on surveys"
+      - "Reduces discrepancy between what people say they do versus what they actually do"
+    limitations:
+      - "Extremely prolonged commitment required (often months to a year)"
+      - "Risk of researcher 'going native' and losing analytical objectivity"
+      - "Difficult to negotiate long-term access to closed cultural settings"
+    typical_data_collection:
+      - "Participant and non-participant field observations"
+      - "Daily reflective field journals and thick descriptions"
+      - "Informal conversational interviews and cultural artifact collection"
+    typical_analysis_techniques:
+      - "Thick ethnographic description and cultural interpretation"
+      - "Domain and taxonomic semantic analysis"
+      - "Grounded cultural narrative synthesis"
+    sample_size_guidance: "1 bounded cultural group or community; continuous observation over extended timeframe."
+    time_required: "high"
+    cost: "high"
+    ethical_considerations: "Navigating covert vs. overt observation ethics, building mutual trust, avoiding cultural exploitation, and protecting informant identities."
+    example_use_cases:
+      - domain: "social science"
+        title: "Street Vendor Informal Economic Networks in Urban Centers"
+        scenario: "Spending 6 months embedded alongside informal market vendors to understand credit systems and communal solidarity."
+      - domain: "engineering"
+        title: "Engineering Culture and Incident Triage in DevOps Squads"
+        scenario: "Shadowing software site reliability teams on-call for 4 months to understand workplace psychological safety and blameless post-mortem practices."
+    suitable_domains:
+      - "social science"
+      - "engineering"
+      - "management"
+      - "education"
+    references:
+      - author: "Fetterman, D. M."
+        year: 2019
+        title: "Ethnography: Step-by-Step (4th ed.)"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Creswell, J. W., & Poth, C. N."
+        year: 2018
+        title: "Qualitative Inquiry and Research Design: Choosing Among Five Approaches"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: grounded_theory
+    name: "Grounded Theory"
+    category: "qualitative"
+    status: "draft - needs faculty verification"
+    description: "An inductive qualitative methodology in which the researcher generates or develops an abstract conceptual theory of a process, action, or interaction grounded deeply in the views and voices of participants."
+    best_used_when: "When existing theoretical frameworks are non-existent, inadequate, or fail to explain a novel social phenomenon or human process."
+    strengths:
+      - "Produces systematic, conceptually grounded inductive theories"
+      - "Explicit, rigorous coding procedures (open, axial, selective coding)"
+      - "Iterative constant comparative method sharpens construct validity"
+    limitations:
+      - "Demands significant methodological expertise and conceptual abstraction"
+      - "Generates massive volumes of qualitative text that require meticulous coding"
+      - "Time-consuming due to simultaneous data collection and theoretical sampling"
+    typical_data_collection:
+      - "Iterative theoretical-sampling interviews"
+      - "Process-oriented field observations"
+      - "Extensive analytical and reflexive memo-writing"
+    typical_analysis_techniques:
+      - "Open coding (concept identification)"
+      - "Axial coding (relating categories to subcategories)"
+      - "Selective coding (identifying the core conceptual story)"
+      - "Constant comparative analysis"
+    sample_size_guidance: "20 to 50 interviews governed by theoretical saturation (no new properties emerging)."
+    time_required: "high"
+    cost: "med"
+    ethical_considerations: "Informed consent, transparency with participants about emerging conceptual models, and anonymization of narrative excerpts."
+    example_use_cases:
+      - domain: "management"
+        title: "How Tech Startups Pivot in Volatile Macroeconomic Markets"
+        scenario: "Interviewing 32 startup founders iteratively to build a substantive process theory explaining phases of organizational pivoting."
+      - domain: "health"
+        title: "Family Caregiver Adaptation to Early-Onset Dementia"
+        scenario: "Developing a conceptual trajectory theory of psychological coping strategies based on iterative interviews with 28 familial caregivers."
+    suitable_domains:
+      - "management"
+      - "health"
+      - "social science"
+      - "education"
+    references:
+      - author: "Charmaz, K."
+        year: 2014
+        title: "Constructing Grounded Theory (2nd ed.)"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Corbin, J., & Strauss, A."
+        year: 2014
+        title: "Basics of Qualitative Research: Techniques and Procedures for Developing Grounded Theory"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: phenomenology
+    name: "Phenomenological Research"
+    category: "qualitative"
+    status: "draft - needs faculty verification"
+    description: "A qualitative design that investigates the common meaning for several individuals of their lived experiences of a specific concept or phenomenon, aiming to distill the universal essence of that experience."
+    best_used_when: "When the research goal is to understand the deep, subjective, emotional essence of how human beings experience a shared life event or condition."
+    strengths:
+      - "Uncovers rich, profound descriptions of human consciousness and lived meaning"
+      - "Honors the subjective experiences of participants without imposing preconceptions"
+      - "Brings clarity to deeply personal, transformative, or traumatic human experiences"
+    limitations:
+      - "Requires researchers to bracket (epoche) their own personal assumptions and biases"
+      - "Not intended for statistical generalization or causal modeling"
+      - "Can be emotionally taxing on both researcher and participants"
+    typical_data_collection:
+      - "In-depth, contemplative open interviews (1-2 hours each)"
+      - "Participant written reflections, diaries, or creative narratives"
+      - "Researcher bracketing memos"
+    typical_analysis_techniques:
+      - "Moustakas phenomenological reduction"
+      - "Horizontalization (treating all statements with equal value)"
+      - "Synthesis of textural ('what') and structural ('how') descriptions into an essence"
+    sample_size_guidance: "5 to 15 participants who have all experienced the core phenomenon under study."
+    time_required: "med"
+    cost: "low"
+    ethical_considerations: "Heightened psychological sensitivity, ensuring access to counseling resources if interviews trigger traumatic memories, and maintaining strict confidentiality."
+    example_use_cases:
+      - domain: "education"
+        title: "The Lived Experience of Sudden Transition to Remote Learning"
+        scenario: "Exploring the emotional and cognitive essences of 10 university students forced to transition entirely to solitary online education during lockdowns."
+      - domain: "health"
+        title: "Living with Sudden Sensorineural Hearing Loss"
+        scenario: "Investigating the fundamental psychological shift in self-identity and communication among 8 adults diagnosed with acute hearing loss."
+    suitable_domains:
+      - "health"
+      - "education"
+      - "social science"
+    references:
+      - author: "Moustakas, C."
+        year: 1994
+        title: "Phenomenological Research Methods"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Creswell, J. W., & Poth, C. N."
+        year: 2018
+        title: "Qualitative Inquiry and Research Design: Choosing Among Five Approaches"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: content_analysis
+    name: "Content Analysis"
+    category: "mixed"
+    status: "draft - needs faculty verification"
+    description: "A systematic, replicable research technique for compressing many words of text, images, or media into fewer content categories based on explicit rules of coding, which can be qualitative (thematic/relational) or quantitative (frequency/word counts)."
+    best_used_when: "When analyzing documented communication artifacts (transcripts, news articles, social media posts, corporate annual reports) without direct participant contact."
+    strengths:
+      - "Non-invasive and unobtrusive; does not alter participant behavior"
+      - "Enables historical and longitudinal text analysis across decades"
+      - "Can bridge qualitative meaning and quantitative statistical metrics"
+    limitations:
+      - "Constrained purely to recorded communications; cannot question the author"
+      - "Risk of misinterpreting the author's intended tone, humor, or context"
+      - "Requires rigorous inter-coder reliability checks to avoid subjective coding drift"
+    typical_data_collection:
+      - "Web scraping of social media threads or customer reviews"
+      - "Archival corporate disclosures, legal briefs, or news articles"
+      - "Syllabi, policy documentation, or video transcripts"
+    typical_analysis_techniques:
+      - "Automated dictionary-based word frequency counts"
+      - "Qualitative relational and conceptual thematic coding"
+      - "Krippendorff's Alpha or Fleiss' Kappa inter-coder reliability testing"
+    sample_size_guidance: "Dozens of qualitative documents to thousands/millions of digital posts or sentences."
+    time_required: "med"
+    cost: "low"
+    ethical_considerations: "Respecting digital terms of service, fair use of public online discourse, and avoiding deanonymization of vulnerable online posters."
+    example_use_cases:
+      - domain: "management"
+        title: "Greenwashing Claims in Corporate ESG Sustainability Reports"
+        scenario: "Coding 150 corporate annual sustainability reports from Fortune 500 firms to quantify discrepancies between environmental promises and tangible audits."
+      - domain: "social science"
+        title: "Public Sentiment Regarding Vaccination on Social Platforms"
+        scenario: "Analyzing 5,000 public microblog posts to categorize moral framing, skepticism themes, and authoritative source citation."
+    suitable_domains:
+      - "management"
+      - "social science"
+      - "education"
+      - "health"
+    references:
+      - author: "Krippendorff, K."
+        year: 2018
+        title: "Content Analysis: An Introduction to Its Methodology (4th ed.)"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Neuendorf, K. A."
+        year: 2017
+        title: "The Content Analysis Guidebook (2nd ed.)"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: systematic_literature_review
+    name: "Systematic Literature Review"
+    category: "mixed"
+    status: "draft - needs faculty verification"
+    description: "A rigorous, transparent, and reproducible methodology to identify, select, critically appraise, and synthesize all relevant empirical research on a clearly formulated research question, following standardized reporting protocols (e.g., PRISMA)."
+    best_used_when: "When researchers aim to consolidate the existing body of evidence, identify methodological gaps, or reconcile conflicting findings across existing literature."
+    strengths:
+      - "Transparent, auditable, and repeatable search protocol minimizes publication bias"
+      - "Synthesizes entire fields of prior research without requiring new primary participant recruitment"
+      - "High scientific impact and authoritative benchmark for future research agendas"
+    limitations:
+      - "Labor-intensive screening of hundreds or thousands of database citations"
+      - "Vulnerable to publication bias (studies with null results are under-published)"
+      - "Requires access to comprehensive academic subscription databases (Scopus, Web of Science, IEEE Xplore)"
+    typical_data_collection:
+      - "Boolean keyword queries across indexed bibliographic databases"
+      - "Documented inclusion/exclusion eligibility screening logs"
+      - "Standardized data extraction templates and quality assessment rubrics"
+    typical_analysis_techniques:
+      - "PRISMA flow diagram generation"
+      - "Risk of bias and study quality appraisal (CASP, Cochrane RoB)"
+      - "Narrative and tabular evidence synthesis"
+    sample_size_guidance: "Typically 30 to 100 included peer-reviewed empirical studies selected from initial pool of thousands."
+    time_required: "high"
+    cost: "low"
+    ethical_considerations: "Proper attribution, transparent disclosure of funding sources, avoidance of cherry-picking, and adherence to PRISMA reporting standards."
+    example_use_cases:
+      - domain: "engineering"
+        title: "Static Code Analysis Tools for Detecting Cybersecurity Vulnerabilities"
+        scenario: "Systematically reviewing 65 empirical studies evaluating the precision and recall of open-source static analyzers against CWE vulnerabilities."
+      - domain: "education"
+        title: "Gamification Interventions in Higher Education STEM Disciplines"
+        scenario: "Synthesizing 42 empirical classroom interventions to assess the impact of leaderboards and digital badges on student engagement."
+    suitable_domains:
+      - "engineering"
+      - "education"
+      - "health"
+      - "management"
+      - "social science"
+    references:
+      - author: "Page, M. J., et al."
+        year: 2021
+        title: "The PRISMA 2020 statement: an updated guideline for reporting systematic reviews"
+        publisher_or_journal: "BMJ, 372(n71)"
+      - author: "Kitchenham, B., & Charters, S."
+        year: 2007
+        title: "Guidelines for performing Systematic Literature Reviews in Software Engineering"
+        publisher_or_journal: "Keele University and Durham University Joint Report"
+
+  - id: meta_analysis
+    name: "Meta-Analysis"
+    category: "quantitative"
+    status: "draft - needs faculty verification"
+    description: "A quantitative, statistical synthesis that combines the numerical results of multiple independent empirical studies addressing the same research question to calculate a single pooled effect size and evaluate heterogeneity."
+    best_used_when: "When multiple quantitative studies with conflicting or ambiguous effect sizes exist, and the researcher wishes to establish definitive statistical effect sizes."
+    strengths:
+      - "Substantially increases statistical power and precision over individual studies"
+      - "Quantifies and explains heterogeneity across disparate populations and study designs"
+      - "Evaluates publication bias through funnel plots and Egger's regression"
+    limitations:
+      - "Garbage-in, garbage-out: vulnerable to poor methodology in primary studies"
+      - "'Apples and oranges' dilemma when combining dissimilar interventions"
+      - "Requires deep quantitative and statistical modeling expertise"
+    typical_data_collection:
+      - "Extraction of sample sizes, means, standard deviations, odds ratios, and p-values from published studies"
+      - "Systematic retrieval of unpublished dissertations to combat publication bias"
+    typical_analysis_techniques:
+      - "Fixed-effects and random-effects statistical pooling (Hedges' g, Cohen's d)"
+      - "Heterogeneity testing (Cochran's Q and I-squared statistic)"
+      - "Meta-regression and subgroup moderation analysis"
+    sample_size_guidance: "Minimum 10 to 30 homogeneous quantitative empirical studies reporting sufficient numerical data."
+    time_required: "high"
+    cost: "low"
+    ethical_considerations: "Rigorous transparency in statistical criteria, avoiding selective inclusion to artificially alter pooled effect sizes."
+    example_use_cases:
+      - domain: "health"
+        title: "Cardiorespiratory Fitness Benefits of High-Intensity Interval Training (HIIT)"
+        scenario: "Pooling numerical VO2 max gains across 28 randomized trials comparing HIIT to steady-state endurance cardio in middle-aged adults."
+      - domain: "management"
+        title: "Relationship Between Transformational Leadership and Team Performance"
+        scenario: "Conducting a meta-analysis on 45 quantitative organizational studies to derive the true population correlation coefficient."
+    suitable_domains:
+      - "health"
+      - "management"
+      - "education"
+      - "social science"
+    references:
+      - author: "Borenstein, M., Hedges, L. V., Higgins, J. P., & Rothstein, H. R."
+        year: 2021
+        title: "Introduction to Meta-Analysis (2nd ed.)"
+        publisher_or_journal: "John Wiley & Sons"
+      - author: "Creswell, J. W., & Creswell, J. D."
+        year: 2018
+        title: "Research Design: Qualitative, Quantitative, and Mixed Methods Approaches"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: action_research
+    name: "Action Research"
+    category: "mixed"
+    status: "draft - needs faculty verification"
+    description: "A collaborative, reflective, and iterative inquiry methodology conducted by practitioners in their own professional context, following a cyclical spiral of planning, acting, observing, and reflecting to resolve immediate practical problems."
+    best_used_when: "When practitioners seek to improve their own professional practice, implement organizational change, and generate practical knowledge simultaneously."
+    strengths:
+      - "Direct, immediate practical relevance and benefit to participants"
+      - "Empowers practitioners and fosters collaborative problem solving"
+      - "Iterative feedback loops allow real-time adaptive interventions"
+    limitations:
+      - "Subject to practitioner confirmation bias and dual-role conflict"
+      - "Context-specific; findings are rarely generalizable to other institutions"
+      - "Requires strong institutional support and participant buy-in"
+    typical_data_collection:
+      - "Practitioner reflective logs and teaching/workplace diaries"
+      - "Participant feedback surveys and focus groups"
+      - "Operational metrics before and after iterative interventions"
+    typical_analysis_techniques:
+      - "Iterative reflective synthesis"
+      - "Before-and-after descriptive metric comparisons"
+      - "Participatory thematic analysis"
+    sample_size_guidance: "1 bounded classroom, clinic, or team (typically 15-50 stakeholders involved)."
+    time_required: "high"
+    cost: "low"
+    ethical_considerations: "Managing power dynamics when the researcher is also the manager, educator, or clinician of the participants."
+    example_use_cases:
+      - domain: "education"
+        title: "Improving Coding Comprehension Through Peer Instruction in High School CS"
+        scenario: "A computer science educator runs three successive 4-week action research cycles testing peer instruction in their own classroom."
+      - domain: "health"
+        title: "Streamlining Surgical Hand-off Protocols in a Community Hospital"
+        scenario: "A charge nurse collaborates with surgical staff over two quarters to cycle through, test, and refine surgical handover checklists."
+    suitable_domains:
+      - "education"
+      - "health"
+      - "management"
+    references:
+      - author: "Stringer, E. T."
+        year: 2014
+        title: "Action Research (4th ed.)"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Saunders, M., Lewis, P., & Thornhill, A."
+        year: 2019
+        title: "Research Methods for Business Students"
+        publisher_or_journal: "Pearson Education"
+
+  - id: design_science_research
+    name: "Design Science Research"
+    category: "mixed"
+    status: "draft - needs faculty verification"
+    description: "A constructive, problem-solving paradigm rooted in engineering and informatics that creates and evaluates novel innovative IT/engineering artifacts (algorithms, models, architectures, systems) to solve identified real-world problems."
+    best_used_when: "When the primary research objective is to invent, build, and rigorously evaluate a novel technology, software architecture, algorithm, or operational prototype."
+    strengths:
+      - "Produces actionable, tangible intellectual property and technological solutions"
+      - "Bridges theoretical rigor with engineering utility and innovation"
+      - "Directly aligns with software, systems, and engineering design cycles"
+    limitations:
+      - "Demands high technical proficiency and development effort"
+      - "Evaluation may be biased if the artifact developer is also the sole evaluator"
+      - "Risk of over-focusing on building at the expense of scholarly contribution"
+    typical_data_collection:
+      - "System performance telemetry (throughput, latency, CPU utilization)"
+      - "Heuristic usability walkthroughs and developer task evaluations"
+      - "Benchmark dataset accuracy runs and comparative profiling"
+    typical_analysis_techniques:
+      - "Comparative algorithmic benchmarking"
+      - "Usability metric analysis (System Usability Scale - SUS)"
+      - "A/B performance testing against baseline architectures"
+    sample_size_guidance: "Varies: 1 novel system prototype benchmarked against standard datasets or evaluated with 15-30 targeted technical users."
+    time_required: "high"
+    cost: "med"
+    ethical_considerations: "Software security, algorithmic fairness, software licensing compliance, and user safety when testing automated systems."
+    example_use_cases:
+      - domain: "engineering"
+        title: "Federated Learning Framework for Privacy-Preserving IoT Anomaly Detection"
+        scenario: "Designing, implementing, and benchmarking a novel decentralized algorithm across simulated edge hardware nodes."
+      - domain: "management"
+        title: "Decision Support System for Resilient Supply Chain Disruption Management"
+        scenario: "Developing a graph-based simulation artifact and evaluating it with supply chain managers in pharmaceutical logistics."
+    suitable_domains:
+      - "engineering"
+      - "management"
+    references:
+      - author: "Hevner, A. R., March, S. T., Park, J., & Ram, S."
+        year: 2004
+        title: "Design Science in Information Systems Research"
+        publisher_or_journal: "MIS Quarterly, 28(1), 75-105"
+      - author: "Peffers, K., Tuunanen, T., Rothenberger, M. A., & Chatterjee, S."
+        year: 2007
+        title: "A Design Science Research Methodology for Information Systems Research"
+        publisher_or_journal: "Journal of Management Information Systems, 24(3), 45-77"
+
+  - id: mixed_methods
+    name: "Mixed Methods (Convergent/Sequential)"
+    category: "mixed"
+    status: "draft - needs faculty verification"
+    description: "A research design that intentionally integrates both quantitative and qualitative research paradigms within a single study or program of inquiry to provide a more complete, comprehensive understanding than either approach alone."
+    best_used_when: "When quantitative numbers alone leave the 'why' unexplained, or qualitative insights require broader empirical generalization."
+    strengths:
+      - "Offers both breadth (statistical power) and depth (lived experience)"
+      - "Triangulation corroborates findings across distinct methodologies"
+      - "Compensates for the weaknesses of single-paradigm approaches"
+    limitations:
+      - "Resource-intensive: requires expertise in both statistical and qualitative methods"
+      - "Complex data integration challenges when quant and qual results diverge"
+      - "Longer timeframes required to collect and integrate multi-modal data"
+    typical_data_collection:
+      - "Simultaneous or sequential surveys and semi-structured qualitative interviews"
+      - "Quantitative sensor logs paired with qualitative participant diary reflections"
+    typical_analysis_techniques:
+      - "Joint display matrices integrating qualitative themes with survey statistics"
+      - "Data transformation (quantitizing qualitative themes or qualitizing stats)"
+      - "Exploratory sequential or explanatory sequential modeling"
+    sample_size_guidance: "100+ for the quantitative survey phase; 15-25 for the qualitative interview phase."
+    time_required: "high"
+    cost: "med"
+    ethical_considerations: "Dual consent protocols, managing participant burden across multiple sessions, and ensuring consistency across phases."
+    example_use_cases:
+      - domain: "education"
+        title: "Student Engagement in Virtual Reality Labs"
+        scenario: "Collecting survey telemetry from 180 physics undergraduates followed by in-depth explanatory interviews with 15 outliers."
+      - domain: "health"
+        title: "Telemedicine Adoption in Rural Primary Clinics"
+        scenario: "Conducting a statewide clinic survey (n=120) paired with 4 contextual focus groups of rural healthcare providers."
+    suitable_domains:
+      - "education"
+      - "health"
+      - "management"
+      - "social science"
+    references:
+      - author: "Creswell, J. W., & Creswell, J. D."
+        year: 2018
+        title: "Research Design: Qualitative, Quantitative, and Mixed Methods Approaches"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Teddlie, C., & Tashakkori, A."
+        year: 2009
+        title: "Foundations of Mixed Methods Research"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: delphi_technique
+    name: "Delphi Technique"
+    category: "mixed"
+    status: "draft - needs faculty verification"
+    description: "A structured, iterative communication and forecasting process that seeks to reach consensus among a panel of geographically dispersed subject matter experts through multiple rounds of questionnaires with controlled anonymous feedback."
+    best_used_when: "When empirical historical data is lacking and expert consensus is required for forecasting, policy formulation, curriculum design, or indicator development."
+    strengths:
+      - "Overcomes groupthink and dominant personalities through panelist anonymity"
+      - "Engages leading domain experts across continents without travel costs"
+      - "Structured rounds allow experts to re-evaluate their views based on group feedback"
+    limitations:
+      - "Panelist attrition (expert dropout) over successive rounds threatens validity"
+      - "Lengthy multi-round process (can take 2-4 months)"
+      - "Arbitrary consensus thresholds (e.g., 70% or 80% agreement definition)"
+    typical_data_collection:
+      - "Round 1: Open-ended qualitative questionnaires to generate items"
+      - "Round 2 & 3: Rating scales (Likert) with statistical summaries of previous rounds"
+    typical_analysis_techniques:
+      - "Interquartile range (IQR) and standard deviation consensus tracking"
+      - "Content analysis of round 1 expert contributions"
+      - "Kendall's W coefficient of concordance"
+    sample_size_guidance: "15 to 35 qualified domain experts."
+    time_required: "high"
+    cost: "low"
+    ethical_considerations: "Strict protection of expert panel anonymity between rounds, preventing coercion to conform."
+    example_use_cases:
+      - domain: "health"
+        title: "Core Competencies for Emergency Pandemic Response Nurses"
+        scenario: "Conducting a 3-round Delphi study with 25 international epidemiology and nursing leaders to standardize training criteria."
+      - domain: "engineering"
+        title: "Defining Critical Success Factors for AI in Avionics Systems"
+        scenario: "Engaging 20 aerospace systems architects over three questionnaire iterations to establish safety certification guidelines."
+    suitable_domains:
+      - "health"
+      - "engineering"
+      - "management"
+      - "education"
+    references:
+      - author: "Linstone, H. A., & Turoff, M."
+        year: 1975
+        title: "The Delphi Method: Techniques and Applications"
+        publisher_or_journal: "Addison-Wesley"
+      - author: "Saunders, M., Lewis, P., & Thornhill, A."
+        year: 2019
+        title: "Research Methods for Business Students"
+        publisher_or_journal: "Pearson Education"
+
+  - id: longitudinal_study
+    name: "Longitudinal Study"
+    category: "quantitative"
+    status: "draft - needs faculty verification"
+    description: "An observational research design that repeatedly measures the same subjects or cohort over an extended chronological period (months to years) to track development, trajectory changes, and temporal patterns."
+    best_used_when: "When research requires establishing the temporal sequence of events, tracking developmental changes over time, or studying long-term trends."
+    strengths:
+      - "Uniquely captures temporal sequencing, development, and maturation"
+      - "Distinguishes short-term fluctuations from enduring developmental trajectories"
+      - "Eliminates cohort effects present in cross-sectional comparisons"
+    limitations:
+      - "High participant attrition (dropouts) over time which biases sample representativeness"
+      - "Very high time commitment and financial expense"
+      - "Testing effects: repeated exposure to tests can alter participant performance"
+    typical_data_collection:
+      - "Repeated periodic surveys or clinical assessments across discrete time intervals (T1, T2, T3)"
+      - "Electronic biometric wearable monitoring over months"
+      - "Annual institutional registry audits"
+    typical_analysis_techniques:
+      - "Repeated-measures ANOVA / Latent Growth Curve Modeling"
+      - "Linear Mixed-Effects Models (Hierarchical Linear Modeling - HLM)"
+      - "Survival analysis and hazard rate estimation"
+    sample_size_guidance: "100+ baseline participants to withstand 20-40% projected longitudinal attrition."
+    time_required: "high"
+    cost: "high"
+    ethical_considerations: "Maintaining participant re-consent over extended durations, secure long-term tracking of personal contact details."
+    example_use_cases:
+      - domain: "health"
+        title: "Cognitive Decline and Physical Activity in Aging Cohorts"
+        scenario: "Tracking cognitive assessments and accelerometer activity in 250 older adults at 6-month intervals over 3 years."
+      - domain: "education"
+        title: "Career Trajectories of Underrepresented Engineering Graduates"
+        scenario: "Following 150 alumni at graduation, year 1, year 3, and year 5 to study workplace retention and career milestones."
+    suitable_domains:
+      - "health"
+      - "education"
+      - "social science"
+    references:
+      - author: "Singer, J. D., & Willett, J. B."
+        year: 2003
+        title: "Applied Longitudinal Data Analysis: Modeling Change and Event Occurrence"
+        publisher_or_journal: "Oxford University Press"
+      - author: "Kothari, C. R."
+        year: 2004
+        title: "Research Methodology: Methods and Techniques"
+        publisher_or_journal: "New Age International Publishers"
+
+  - id: cross_sectional_study
+    name: "Cross-Sectional Study"
+    category: "quantitative"
+    status: "draft - needs faculty verification"
+    description: "An observational study design in which data is gathered from a defined population, or a representative subset, at a single specific point in time to examine the prevalence of characteristics or associations between variables."
+    best_used_when: "When researchers need a rapid, cost-effective snapshot of prevalence, distribution, or associations within a population without following subjects over time."
+    strengths:
+      - "Relatively rapid, efficient, and cost-effective compared to longitudinal tracking"
+      - "Provides valuable estimates of disease or phenomenon prevalence in populations"
+      - "Can examine multiple outcomes and exposures simultaneously"
+    limitations:
+      - "Cannot establish temporal precedence (chicken-or-egg problem); cannot infer causality"
+      - "Susceptible to survivorship and recall bias"
+      - "Confounded by cohort generation differences when comparing age groups"
+    typical_data_collection:
+      - "One-time digital questionnaires or standardized field assessments"
+      - "Point-in-time clinical screenings or health metrics"
+      - "Single-quarter financial and organizational survey records"
+    typical_analysis_techniques:
+      - "Prevalence calculations and Odds Ratios (OR)"
+      - "Multivariable logistic regression"
+      - "Chi-square contingency tests and Mann-Whitney U tests"
+    sample_size_guidance: "100 to 500+ respondents depending on expected population prevalence."
+    time_required: "low"
+    cost: "low"
+    ethical_considerations: "Informed consent, voluntary participation, and non-disclosure of individual clinical or sensitive survey results."
+    example_use_cases:
+      - domain: "health"
+        title: "Prevalence of Ergonomic Repetitive Strain Injuries Among Software Engineers"
+        scenario: "Surveying 300 programmers across tech parks during Q2 to determine the prevalence of carpal tunnel symptoms and desk setup."
+      - domain: "management"
+        title: "Financial Literacy and Investment Propensity Among Gen Z Professionals"
+        scenario: "Administering a one-time questionnaire to 400 young professionals to evaluate correlations between financial knowledge and crypto investment."
+    suitable_domains:
+      - "health"
+      - "management"
+      - "social science"
+      - "education"
+    references:
+      - author: "Creswell, J. W., & Creswell, J. D."
+        year: 2018
+        title: "Research Design: Qualitative, Quantitative, and Mixed Methods Approaches"
+        publisher_or_journal: "SAGE Publications"
+      - author: "Saunders, M., Lewis, P., & Thornhill, A."
+        year: 2019
+        title: "Research Methods for Business Students"
+        publisher_or_journal: "Pearson Education"
+
+  - id: correlational_study
+    name: "Correlational Research"
+    category: "quantitative"
+    status: "draft - needs faculty verification"
+    description: "A non-experimental quantitative design that investigates the statistical relationship between two or more variables without manipulating the independent variable or exerting experimental control."
+    best_used_when: "When experimental manipulation is impossible, unethical, or impractical, but establishing the strength and direction of predictive relationships is crucial."
+    strengths:
+      - "Identifies strength and direction of associations between variables"
+      - "Facilitates mathematical predictive modeling"
+      - "Highly feasible using existing or naturalistic datasets"
+    limitations:
+      - "Correlation does not imply causation (omitted variable and third-variable problem)"
+      - "Directionality problem: unclear whether variable X causes Y or Y causes X"
+      - "Susceptible to spurious correlations in large observational datasets"
+    typical_data_collection:
+      - "Standardized multi-item scales and numerical questionnaires"
+      - "Secondary historical databases and academic records"
+      - "Sensor or usage log telemetry"
+    typical_analysis_techniques:
+      - "Pearson's r and Spearman's rho correlation coefficients"
+      - "Multiple linear and polynomial regression"
+      - "Structural Equation Modeling (SEM) and path analysis"
+    sample_size_guidance: "80 to 250+ cases for robust multiple regression power."
+    time_required: "low"
+    cost: "low"
+    ethical_considerations: "Responsible interpretation of statistical correlations to prevent misleading causal claims to the public."
+    example_use_cases:
+      - domain: "education"
+        title: "Predicting Academic Retention from Library Resource Utilization"
+        scenario: "Analyzing the statistical correlation between student digital library log-ins and second-year retention rates across 500 undergraduates."
+      - domain: "management"
+        title: "CEO Social Media Activity and Short-Term Stock Volatility"
+        scenario: "Examining 2 years of daily CEO Twitter postings correlated with daily trading volume across 100 publicly traded tech firms."
+    suitable_domains:
+      - "education"
+      - "management"
+      - "social science"
+      - "health"
+    references:
+      - author: "Kothari, C. R."
+        year: 2004
+        title: "Research Methodology: Methods and Techniques"
+        publisher_or_journal: "New Age International Publishers"
+      - author: "Creswell, J. W., & Creswell, J. D."
+        year: 2018
+        title: "Research Design: Qualitative, Quantitative, and Mixed Methods Approaches"
+        publisher_or_journal: "SAGE Publications"
+
+  - id: observational_study
+    name: "Observational Study"
+    category: "mixed"
+    status: "draft - needs faculty verification"
+    description: "A non-experimental research method where the researcher systematically observes, codes, and records the behavior of subjects in their natural or semi-controlled setting without intervention or manipulation."
+    best_used_when: "When self-report surveys might be unreliable or when naturalistic behavioral interactions must be recorded exactly as they occur in real time."
+    strengths:
+      - "Captures authentic real-time behavior without relying on participant memory"
+      - "High ecological validity in naturalistic environments"
+      - "Effective for populations unable to complete surveys (infants, animals, clinical patients)"
+    limitations:
+      - "Hawthorne effect: subjects may alter behavior when they realize they are observed"
+      - "Observer bias in interpreting ambiguous interactions"
+      - "Cannot ascertain internal thoughts, motivations, or private cognitive processes"
+    typical_data_collection:
+      - "Systematic structured observation check-sheets with interval timing"
+      - "Video recording of human-system or interpersonal interactions"
+      - "Automated movement trackers or gaze/eye-tracking monitors"
+    typical_analysis_techniques:
+      - "Inter-rater reliability of behavioral coding (Cohen's Kappa)"
+      - "Behavioral frequency and duration analysis"
+      - "Sequence analysis of behavioral transitions"
+    sample_size_guidance: "20 to 60 behavioral sessions or observational intervals."
+    time_required: "med"
+    cost: "med"
+    ethical_considerations: "Ensuring observational ethics in public vs. semi-private spaces; consent for video recording."
+    example_use_cases:
+      - domain: "education"
+        title: "Collaborative Problem Solving in Kindergarten Robotics Clubs"
+        scenario: "Observing and coding turn-taking behaviors and conflict resolution among 30 children working in pairs with programmable toy robots."
+      - domain: "engineering"
+        title: "Human Factors Usability in Nuclear Control Room Simulators"
+        scenario: "Recording operator eye fixations and hand movements during simulated alarm emergency scenarios."
+    suitable_domains:
+      - "education"
+      - "engineering"
+      - "health"
+      - "social science"
+    references:
+      - author: "Kothari, C. R."
+        year: 2004
+        title: "Research Methodology: Methods and Techniques"
+        publisher_or_journal: "New Age International Publishers"
+      - author: "Saunders, M., Lewis, P., & Thornhill, A."
+        year: 2019
+        title: "Research Methods for Business Students"
+        publisher_or_journal: "Pearson Education"

@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+
+{% block title %}Recommendations: {{ session.study_title }} - MethodAssist{% endblock %}
+
+{% block content %}
+<!-- Results Header Banner -->
+<div class="custom-card p-4 p-md-5 mb-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+    <div>
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <span class="badge bg-primary text-uppercase px-3 py-1">
+          <i class="bi bi-cpu-fill me-1"></i> Recommendation Report
+        </span>
+        <span class="badge bg-light text-dark border px-3 py-1">
+          Session #{{ session.id }}
+        </span>
+        {% if session.review_status == 'pending' %}
+          <span class="badge bg-warning text-dark px-3 py-1">
+            <i class="bi bi-clock-history me-1"></i> Awaiting Faculty Review
+          </span>
+        {% elif session.review_status == 'approved' %}
+          <span class="badge bg-success px-3 py-1">
+            <i class="bi bi-check-circle-fill me-1"></i> Faculty Approved
+          </span>
+        {% elif session.review_status == 'rejected' %}
+          <span class="badge bg-danger px-3 py-1">
+            <i class="bi bi-x-circle-fill me-1"></i> Faculty Rejected
+          </span>
+        {% elif session.review_status == 'needs_revision' %}
+          <span class="badge bg-info text-dark px-3 py-1">
+            <i class="bi bi-pencil-square me-1"></i> Needs Revision
+          </span>
+        {% endif %}
+      </div>
+
+      <h2 class="fw-bold mb-1">{{ session.study_title }}</h2>
+      <div class="text-muted small">
+        <span><i class="bi bi-person me-1"></i><strong>Researcher:</strong> {{ session.student_name }}</span>
+        <span class="mx-2">•</span>
+        <span><i class="bi bi-calendar3 me-1"></i><strong>Evaluated:</strong> {{ session.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex gap-2">
+      <button class="btn btn-outline-secondary" onclick="window.print()">
+        <i class="bi bi-printer me-1"></i> Print / PDF
+      </button>
+      <a href="/compare?ids={{ top_methods|map(attribute='method_id')|join(',') }}" class="btn btn-outline-primary">
+        <i class="bi bi-arrow-left-right me-1"></i> Compare Top 3
+      </a>
+      <a href="/questionnaire" class="btn btn-primary">
+        <i class="bi bi-arrow-clockwise me-1"></i> New Assessment
+      </a>
+    </div>
+  </div>
+
+  <!-- General Advisory Warnings if any -->
+  {% if general_warnings %}
+    <div class="mt-3">
+      {% for gw in general_warnings %}
+        <div class="alert alert-warning py-2 px-3 small mb-2 d-flex align-items-center">
+          <i class="bi bi-exclamation-triangle-fill text-warning me-2 fs-5"></i>
+          <div>{{ gw }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<!-- ================= TOP 3 RECOMMENDED METHODS ================= -->
+<div class="mb-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="fw-bold mb-0">Top 3 Recommended Research Methodologies</h4>
+    <span class="small text-muted"><i class="bi bi-info-circle me-1"></i>Generated via deterministic rule engine</span>
+  </div>
+
+  <div class="row g-4">
+    {% for item in top_methods %}
+      <div class="col-lg-4">
+        <div class="custom-card p-4 h-100 d-flex flex-column border-top border-4 {% if loop.index == 1 %}border-primary{% elif loop.index == 2 %}border-info{% else %}border-secondary{% endif %}">
+          
+          <!-- Rank & Category -->
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge {% if loop.index == 1 %}bg-primary{% elif loop.index == 2 %}bg-info text-dark{% else %}bg-secondary{% endif %} rounded-pill px-3 py-1 fw-bold">
+              Rank #{{ item.rank }} {% if loop.index == 1 %}• Primary Choice{% endif %}
+            </span>
+            <span class="badge badge-{{ item.category }} text-capitalize">
+              {{ item.category }}
+            </span>
+          </div>
+
+          <!-- Method Name -->
+          <h4 class="fw-bold mb-2">
+            <a href="/kb/{{ item.method_id }}" class="text-decoration-none text-dark hover-primary">{{ item.method_name }}</a>
+          </h4>
+
+          <!-- Match Percentage Bar -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center small mb-1">
+              <span class="fw-semibold text-muted">Suitability Match</span>
+              <span class="fw-bold fs-5 text-dark">{{ item.match_percentage }}%</span>
+            </div>
+            <div class="match-progress">
+              <div class="h-100 {% if item.match_percentage >= 70 %}match-bar-high{% elif item.match_percentage >= 45 %}match-bar-med{% else %}match-bar-low{% endif %}" 
+                   style="width: {{ item.match_percentage }}%;"></div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="text-muted small mb-3">
+            {{ item.description[:130] }}...
+          </p>
+
+          <!-- Why This Method (Fired Rules) -->
+          <div class="p-3 bg-light rounded-3 mb-3 flex-grow-1">
+            <div class="fw-bold text-dark small mb-2">
+              <i class="bi bi-patch-check-fill text-success me-1"></i> Why this method:
+            </div>
+            {% if item.why_this_method %}
+              <ul class="list-unstyled mb-0 small">
+                {% for reason in item.why_this_method %}
+                  <li class="mb-2 d-flex align-items-start">
+                    <i class="bi bi-check2 text-success me-2 mt-1"></i>
+                    <span>{{ reason }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <div class="small text-muted">Baseline compatibility based on general study profile.</div>
+            {% endif %}
+
+            <!-- Method Specific Warnings / Penalties -->
+            {% if item.warnings %}
+              <hr class="my-2">
+              <div class="fw-semibold text-danger small mb-1">
+                <i class="bi bi-exclamation-circle me-1"></i> Feasibility Caveats:
+              </div>
+              <ul class="list-unstyled mb-0 small text-danger">
+                {% for w in item.warnings %}
+                  <li class="mb-1"><i class="bi bi-arrow-right-short"></i> {{ w }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+
+          <!-- Card Footer -->
+          <div class="pt-2 border-top mt-auto d-flex justify-content-between align-items-center">
+            <a href="/kb/{{ item.method_id }}" class="btn btn-outline-primary btn-sm w-100">
+              <i class="bi bi-journal-text me-1"></i> View Full Methodology Guide
+            </a>
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- ================= ALTERNATIVES & DISQUALIFICATIONS ================= -->
+<div class="row g-4 mb-4">
+  <!-- Close Alternatives -->
+  <div class="col-md-6">
+    <div class="custom-card p-4 h-100">
+      <h5 class="fw-bold mb-3"><i class="bi bi-shuffle me-2 text-primary"></i>Alternative Methodologies (Ranks 4 - 5)</h5>
+      {% if alternatives %}
+        <div class="list-group list-group-flush">
+          {% for alt in alternatives %}
+            <div class="list-group-item px-0 py-3">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <h6 class="fw-bold mb-0">
+                  <a href="/kb/{{ alt.method_id }}" class="text-decoration-none text-dark">{{ alt.method_name }}</a>
+                </h6>
+                <span class="badge bg-light text-dark border">{{ alt.match_percentage }}% Match</span>
+              </div>
+              <div class="text-muted small mb-2">{{ alt.description[:100] }}...</div>
+              <span class="badge badge-{{ alt.category }} text-capitalize small">{{ alt.category }}</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-muted small mb-0">No close alternative methods identified for this constraint set.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Disqualified Methods -->
+  <div class="col-md-6">
+    <div class="custom-card p-4 h-100">
+      <h5 class="fw-bold mb-3"><i class="bi bi-slash-circle me-2 text-danger"></i>Disqualified Methods (Hard Constraints)</h5>
+      <p class="text-muted small mb-3">Methods excluded because study constraints violate critical prerequisites:</p>
+      
+      {% set hard_excluded = disqualified_methods|selectattr("disqualified", "equalto", True)|list %}
+      {% if hard_excluded %}
+        <div class="list-group list-group-flush">
+          {% for disq in hard_excluded[:4] %}
+            <div class="list-group-item px-0 py-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-dark small">{{ disq.method_name }}</strong>
+                <span class="badge bg-danger bg-opacity-10 text-danger" style="font-size:0.7rem;">Incompatible</span>
+              </div>
+              {% for w in disq.warnings %}
+                <div class="text-danger small mt-1" style="font-size:0.75rem;"><i class="bi bi-x me-1"></i>{{ w }}</div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="text-muted small mb-0">No methods were disqualified by hard constraints.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- ================= FACULTY REVIEWS ON THIS SESSION ================= -->
+{% if session.reviews %}
+  <div class="custom-card p-4 mb-4 border-start border-4 border-info">
+    <h5 class="fw-bold mb-3"><i class="bi bi-chat-quote-fill me-2 text-info"></i>Faculty Review Feedback</h5>
+    {% for rev in session.reviews %}
+      <div class="p-3 bg-light rounded-3 mb-2">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <span class="fw-bold">{{ rev.faculty.full_name }} ({{ rev.faculty.department }})</span>
+          <span class="badge {% if rev.decision == 'approve' %}bg-success{% elif rev.decision == 'reject' %}bg-danger{% else %}bg-warning text-dark{% endif %} text-uppercase">
+            {{ rev.decision }}
+          </span>
+        </div>
+        <p class="mb-1 small">{{ rev.comments }}</p>
+        {% if rev.suggested_method_id %}
+          <div class="small text-primary"><i class="bi bi-lightbulb me-1"></i>Faculty Suggested Alternative: <strong>{{ rev.suggested_method_id }}</strong></div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<!-- Review Queue Link -->
+<div class="text-center mt-4">
+  <a href="/review/queue" class="btn btn-outline-secondary btn-sm">
+    <i class="bi bi-clipboard-check me-1"></i> Go to Faculty Review Queue
+  </a>
+</div>
+{% endblock %}

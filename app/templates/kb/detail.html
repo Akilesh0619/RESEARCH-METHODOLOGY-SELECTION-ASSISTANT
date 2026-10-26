@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}{{ method.name }} - Research Methodology Assistant{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+    <li class="breadcrumb-item"><a href="/kb" class="text-decoration-none">Knowledge Base</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ method.name }}</li>
+  </ol>
+</nav>
+
+<!-- Method Header Banner -->
+<div class="custom-card p-4 p-md-5 mb-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+    <div>
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <span class="badge badge-{{ method.category }} text-capitalize px-3 py-1 fs-6">
+          {{ method.category }} Method
+        </span>
+        <span class="badge badge-draft px-3 py-1 fs-6">
+          <i class="bi bi-shield-exclamation me-1"></i> {{ method.status }}
+        </span>
+      </div>
+      <h1 class="fw-bold mb-2">{{ method.name }}</h1>
+      <p class="lead text-muted mb-0">{{ method.description }}</p>
+    </div>
+    <div class="d-flex gap-2">
+      <a href="/compare?ids={{ method.id }}" class="btn btn-outline-primary">
+        <i class="bi bi-arrow-left-right me-1"></i> Compare Method
+      </a>
+      <a href="/questionnaire" class="btn btn-primary">
+        <i class="bi bi-magic me-1"></i> Check Match For My Study
+      </a>
+    </div>
+  </div>
+
+  <!-- Best Used When Callout -->
+  <div class="p-3 bg-light rounded-3 border-start border-4 border-primary mt-3">
+    <div class="fw-bold text-primary mb-1"><i class="bi bi-lightbulb-fill me-1"></i> Best Used When:</div>
+    <div class="text-secondary">{{ method.best_used_when }}</div>
+  </div>
+</div>
+
+<!-- Grid Layout: Core Characteristics -->
+<div class="row g-4 mb-4">
+  <!-- Strengths -->
+  <div class="col-md-6">
+    <div class="custom-card p-4 h-100 border-top border-4 border-success">
+      <h5 class="fw-bold text-success mb-3"><i class="bi bi-check-circle-fill me-2"></i>Key Strengths</h5>
+      <ul class="list-unstyled mb-0">
+        {% for s in method.strengths %}
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-check2 text-success me-2 mt-1 fs-5"></i>
+            <span>{{ s }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Limitations -->
+  <div class="col-md-6">
+    <div class="custom-card p-4 h-100 border-top border-4 border-danger">
+      <h5 class="fw-bold text-danger mb-3"><i class="bi bi-x-circle-fill me-2"></i>Methodological Limitations</h5>
+      <ul class="list-unstyled mb-0">
+        {% for l in method.limitations %}
+          <li class="mb-2 d-flex align-items-start">
+            <i class="bi bi-exclamation-triangle text-danger me-2 mt-1"></i>
+            <span>{{ l }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Execution Parameters: Data Collection, Analysis, Time, Cost, Ethics -->
+<div class="row g-4 mb-4">
+  <div class="col-lg-6">
+    <div class="custom-card p-4 h-100">
+      <h5 class="fw-bold mb-3"><i class="bi bi-tools me-2 text-primary"></i>Data Collection & Analysis</h5>
+      
+      <div class="mb-3">
+        <h6 class="fw-semibold text-muted small text-uppercase">Typical Data Collection Techniques</h6>
+        <ul class="mb-3 ps-3">
+          {% for dc in method.typical_data_collection %}
+            <li class="text-secondary">{{ dc }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div>
+        <h6 class="fw-semibold text-muted small text-uppercase">Typical Data Analysis Techniques</h6>
+        <ul class="mb-0 ps-3">
+          {% for at in method.typical_analysis_techniques %}
+            <li class="text-secondary">{{ at }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="custom-card p-4 h-100">
+      <h5 class="fw-bold mb-3"><i class="bi bi-speedometer2 me-2 text-primary"></i>Resource & Feasibility Profile</h5>
+      
+      <div class="row g-3 mb-3">
+        <div class="col-sm-6">
+          <div class="p-3 bg-light rounded-3 text-center">
+            <div class="text-muted small">Time Required</div>
+            <div class="fw-bold fs-5 text-capitalize text-dark mt-1">
+              <i class="bi bi-hourglass-split text-warning me-1"></i> {{ method.time_required }}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="p-3 bg-light rounded-3 text-center">
+            <div class="text-muted small">Estimated Cost</div>
+            <div class="fw-bold fs-5 text-capitalize text-dark mt-1">
+              <i class="bi bi-cash-stack text-success me-1"></i> {{ method.cost }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <h6 class="fw-semibold text-muted small text-uppercase">Sample Size Guidance</h6>
+        <p class="text-secondary mb-0 bg-light p-2 rounded small">
+          <i class="bi bi-people-fill text-primary me-1"></i> {{ method.sample_size_guidance }}
+        </p>
+      </div>
+
+      <div>
+        <h6 class="fw-semibold text-muted small text-uppercase">Ethical Considerations</h6>
+        <p class="text-secondary mb-0 bg-light p-2 rounded small">
+          <i class="bi bi-shield-lock-fill text-danger me-1"></i> {{ method.ethical_considerations }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Example Use Cases (At least 2 across different domains) -->
+<div class="custom-card p-4 mb-4">
+  <h5 class="fw-bold mb-3"><i class="bi bi-briefcase-fill me-2 text-primary"></i>Illustrative Use Cases Across Domains</h5>
+  <div class="row g-3">
+    {% for uc in method.example_use_cases %}
+      <div class="col-md-6">
+        <div class="p-3 bg-light rounded-3 border h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="badge bg-secondary text-uppercase" style="font-size:0.75rem;">
+              {{ uc.domain }}
+            </span>
+            <span class="small text-muted"><i class="bi bi-journal-check me-1"></i>Applied Study</span>
+          </div>
+          <h6 class="fw-bold mb-2">{{ uc.title }}</h6>
+          <p class="text-muted small mb-0">{{ uc.scenario }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Academic References (Textbooks & Established Literature) -->
+<div class="custom-card p-4">
+  <h5 class="fw-bold mb-3"><i class="bi bi-journal-text me-2 text-primary"></i>Standard Academic References</h5>
+  <p class="text-muted small mb-3">
+    These sources represent standard textbook literature in research design methodology.
+  </p>
+  <ul class="list-group list-group-flush">
+    {% for r in method.references %}
+      <li class="list-group-item px-0 py-2">
+        <i class="bi bi-bookmark-fill text-primary me-2"></i>
+        <strong>{{ r.author }} ({{ r.year }}).</strong>
+        <em>{{ r.title }}</em>. {{ r.publisher_or_journal }}.
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

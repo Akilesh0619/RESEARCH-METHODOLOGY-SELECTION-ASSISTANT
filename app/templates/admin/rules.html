@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Declarative Rules Catalog - MethodAssist{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1"><i class="bi bi-sliders text-primary me-2"></i>Declarative Rules Catalog</h2>
+    <p class="text-muted mb-0">Transparent, deterministic expert rules applied by the scoring engine to evaluate research methodology suitability.</p>
+  </div>
+  <div class="d-flex gap-2 mt-3 mt-md-0">
+    <a href="/questionnaire" class="btn btn-primary">
+      <i class="bi bi-play-circle me-1"></i> Test in Questionnaire
+    </a>
+  </div>
+</div>
+
+<!-- Rule Effect Filter & Search Bar -->
+<div class="filter-bar mb-4">
+  <form method="get" action="/admin/rules" class="row g-3 align-items-center">
+    <div class="col-md-6">
+      <div class="d-flex flex-wrap gap-2 align-items-center">
+        <span class="text-muted small fw-semibold me-2"><i class="bi bi-funnel me-1"></i>Effect:</span>
+        <a href="/admin/rules?effect=all{% if current_search %}&search={{ current_search }}{% endif %}" class="btn btn-sm {% if current_effect == 'all' or not current_effect %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill">
+          All <span class="badge bg-white text-dark ms-1">{{ rule_counts.all }}</span>
+        </a>
+        <a href="/admin/rules?effect=boost{% if current_search %}&search={{ current_search }}{% endif %}" class="btn btn-sm {% if current_effect == 'boost' %}btn-success{% else %}btn-outline-success{% endif %} rounded-pill">
+          <i class="bi bi-arrow-up-circle me-1"></i> Boosts <span class="badge bg-white text-success ms-1">{{ rule_counts.boost }}</span>
+        </a>
+        <a href="/admin/rules?effect=penalty{% if current_search %}&search={{ current_search }}{% endif %}" class="btn btn-sm {% if current_effect == 'penalty' %}btn-warning text-dark{% else %}btn-outline-warning text-dark{% endif %} rounded-pill">
+          <i class="bi bi-arrow-down-circle me-1"></i> Penalties <span class="badge bg-dark text-white ms-1">{{ rule_counts.penalty }}</span>
+        </a>
+        <a href="/admin/rules?effect=hard_exclude{% if current_search %}&search={{ current_search }}{% endif %}" class="btn btn-sm {% if current_effect == 'hard_exclude' %}btn-danger{% else %}btn-outline-danger{% endif %} rounded-pill">
+          <i class="bi bi-slash-circle me-1"></i> Hard Excludes <span class="badge bg-white text-danger ms-1">{{ rule_counts.hard_exclude }}</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="hidden" name="effect" value="{{ current_effect or 'all' }}">
+        <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+        <input type="text" name="search" class="form-control" placeholder="Search by rule ID, method, condition, or reason..." value="{{ current_search or '' }}">
+        {% if current_search %}
+          <a href="/admin/rules?effect={{ current_effect or 'all' }}" class="btn btn-outline-secondary"><i class="bi bi-x-lg"></i></a>
+        {% endif %}
+        <button type="submit" class="btn btn-outline-primary">Filter</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Rules Table -->
+<div class="custom-card overflow-hidden mb-4">
+  {% if rules %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 180px;">Rule ID</th>
+            <th style="width: 150px;">Target Method</th>
+            <th style="width: 130px;">Effect & Weight</th>
+            <th>Required Conditions</th>
+            <th>Explainable Reason Text (Textbook Rationale)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rules %}
+            <tr>
+              <td>
+                <span class="font-monospace small fw-bold text-dark">{{ r.id }}</span>
+              </td>
+              <td>
+                <a href="/kb/{{ r.method_id }}" class="badge bg-light text-primary border text-decoration-none">
+                  {{ r.method_id }}
+                </a>
+              </td>
+              <td>
+                {% if r.effect == 'boost' %}
+                  <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">
+                    <i class="bi bi-plus-circle me-1"></i>+{{ r.weight|round }} pts
+                  </span>
+                {% elif r.effect == 'penalty' %}
+                  <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25">
+                    <i class="bi bi-dash-circle me-1"></i>-{{ r.weight|round }} pts
+                  </span>
+                {% elif r.effect == 'hard_exclude' %}
+                  <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25">
+                    <i class="bi bi-slash-circle me-1"></i>Hard Exclude
+                  </span>
+                {% endif %}
+              </td>
+              <td>
+                <div class="d-flex flex-wrap gap-1">
+                  {% for k, v in r.conditions.items() %}
+                    <span class="badge bg-light text-dark border small" style="font-size:0.75rem;">
+                      <span class="text-muted">{{ k }}:</span> {{ v if v is not string else v }}
+                    </span>
+                  {% endfor %}
+                </div>
+              </td>
+              <td>
+                <div class="small text-muted">{{ r.reason_text }}</div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="p-5 text-center text-muted">
+      <i class="bi bi-search fs-1 d-block mb-3 text-secondary"></i>
+      <h5 class="fw-semibold">No Rules Matched</h5>
+      <p class="small mb-3">No rules in the catalog match your current filter or search criteria.</p>
+      <a href="/admin/rules" class="btn btn-primary btn-sm">Clear Filters</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

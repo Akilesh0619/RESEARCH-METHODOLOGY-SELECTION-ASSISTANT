@@ -1,0 +1,516 @@
+{% extends "base.html" %}
+
+{% block title %}Questionnaire - Research Methodology Selection Assistant{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-9 col-xl-8">
+    
+    <!-- Header -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold mb-1">Study Design Questionnaire</h2>
+      <p class="text-muted">Answer questions across 11 methodological dimensions to receive rule-based recommendations.</p>
+    </div>
+
+    <!-- Wizard Stepper Indicator -->
+    <div class="wizard-step-indicator mb-4">
+      <div class="text-center">
+        <div class="wizard-step-node active" id="node1">1</div>
+        <div class="small fw-semibold mt-1">Core Goals</div>
+      </div>
+      <div class="text-center">
+        <div class="wizard-step-node" id="node2">2</div>
+        <div class="small fw-semibold mt-1">Resources</div>
+      </div>
+      <div class="text-center">
+        <div class="wizard-step-node" id="node3">3</div>
+        <div class="small fw-semibold mt-1">Context & Ethics</div>
+      </div>
+    </div>
+
+    <form id="wizardForm" method="post" action="/questionnaire" class="custom-card p-4 p-md-5">
+      
+      <!-- ================= STEP 1: CORE GOALS ================= -->
+      <div id="step1" class="wizard-pane">
+        <h4 class="fw-bold mb-3 text-primary"><i class="bi bi-compass me-2"></i>Step 1: Core Research Goals</h4>
+        <p class="text-muted small mb-4">Define what your study aims to accomplish and the nature of evidence you will analyze.</p>
+
+        <!-- Study Info -->
+        <div class="row g-3 mb-4">
+          <div class="col-md-7">
+            <label class="form-label fw-semibold">Study Title / Topic <span class="text-danger">*</span></label>
+            <input type="text" name="study_title" class="form-control" placeholder="e.g. Impact of AI Feedback Tools on Student Code Quality" required>
+          </div>
+          <div class="col-md-5">
+            <label class="form-label fw-semibold">Student / Researcher Name</label>
+            <input type="text" name="student_name" class="form-control" placeholder="e.g. Alex Kumar" value="Alex Kumar">
+          </div>
+        </div>
+
+        <!-- Dimension 1: Research Objective -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">1. Primary Research Objective <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="research_objective" value="explore" required class="form-check-input me-2">
+                <strong>Explore</strong>
+                <div class="text-muted small mt-1">Investigate an emerging phenomenon or uncover new patterns with little prior theory.</div>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="research_objective" value="describe" class="form-check-input me-2">
+                <strong>Describe</strong>
+                <div class="text-muted small mt-1">Accurately profile characteristics, behaviors, or opinions of a population.</div>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="research_objective" value="explain_test_hypothesis" class="form-check-input me-2">
+                <strong>Explain / Test Hypothesis</strong>
+                <div class="text-muted small mt-1">Determine cause-and-effect or test relationships between defined variables.</div>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="research_objective" value="predict" class="form-check-input me-2">
+                <strong>Predict</strong>
+                <div class="text-muted small mt-1">Forecast future outcomes or temporal trajectories based on predictive factors.</div>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="research_objective" value="evaluate_intervention" class="form-check-input me-2">
+                <strong>Evaluate an Intervention</strong>
+                <div class="text-muted small mt-1">Assess the efficacy of a treatment, program, educational technique, or policy change.</div>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="research_objective" value="build_evaluate_artifact" class="form-check-input me-2">
+                <strong>Build & Evaluate an Artifact</strong>
+                <div class="text-muted small mt-1">Create an innovative IT prototype, algorithm, or model and benchmark its performance.</div>
+              </label>
+            </div>
+            <div class="col-12">
+              <label class="custom-card p-3 d-block cursor-pointer">
+                <input type="radio" name="research_objective" value="review_literature" class="form-check-input me-2">
+                <strong>Review Existing Literature</strong>
+                <div class="text-muted small mt-1">Synthesize, audit, or meta-analyze published empirical studies to summarize the state of knowledge.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dimension 2: Data Type -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">2. Target Data Type <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="data_type" value="numerical" required class="form-check-input me-2">
+                <strong>Numerical</strong>
+                <div class="text-muted small mt-1">Scores, ratings, metrics, counts, sensor outputs.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="data_type" value="textual_narrative" class="form-check-input me-2">
+                <strong>Textual / Narrative</strong>
+                <div class="text-muted small mt-1">Transcripts, open responses, observations, documents.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="data_type" value="both" class="form-check-input me-2">
+                <strong>Both (Mixed)</strong>
+                <div class="text-muted small mt-1">Integration of quantitative metrics and qualitative narratives.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dimension 3: Control Over Variables -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">3. Degree of Control Over Variables <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="control_over_variables" value="full" required class="form-check-input me-2">
+                <strong>Full Control</strong>
+                <div class="text-muted small mt-1">Can isolate variables and randomly assign participants into controlled groups.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="control_over_variables" value="partial" class="form-check-input me-2">
+                <strong>Partial Control</strong>
+                <div class="text-muted small mt-1">Intervene in real-world settings (e.g. existing classes or teams) without random assignment.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="control_over_variables" value="none" class="form-check-input me-2">
+                <strong>None (Observational)</strong>
+                <div class="text-muted small mt-1">Observe or record naturally occurring phenomena without manipulating conditions.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dimension 8: Existing Theory -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">4. Maturity of Existing Theory <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="existing_theory" value="well_established" required class="form-check-input me-2">
+                <strong>Well-Established</strong>
+                <div class="text-muted small mt-1">Mature models and validated instruments exist to guide hypothesis testing.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="existing_theory" value="limited" class="form-check-input me-2">
+                <strong>Limited / Emerging</strong>
+                <div class="text-muted small mt-1">Some conceptual frameworks exist but lack clear consensus or specific application.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="existing_theory" value="none" class="form-check-input me-2">
+                <strong>None / Minimal</strong>
+                <div class="text-muted small mt-1">Novel territory where theory needs to be developed inductively from data.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-end mt-4">
+          <button type="button" class="btn btn-primary btn-lg px-4" onclick="goToStep(2)">
+            Continue to Resources <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= STEP 2: RESOURCES & CONSTRAINTS ================= -->
+      <div id="step2" class="wizard-pane d-none">
+        <h4 class="fw-bold mb-3 text-primary"><i class="bi bi-speedometer2 me-2"></i>Step 2: Resources & Practical Constraints</h4>
+        <p class="text-muted small mb-4">Define available sample access, calendar time, and financial budget for your project.</p>
+
+        <!-- Dimension 4: Sample Size -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">5. Anticipated Sample Size Available <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-3 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="sample_size_available" value="under_10" required class="form-check-input me-2">
+                <strong>&lt; 10</strong>
+                <div class="text-muted small mt-1">Very small / in-depth cases.</div>
+              </label>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="sample_size_available" value="10_to_30" class="form-check-input me-2">
+                <strong>10 - 30</strong>
+                <div class="text-muted small mt-1">Focused interviews or pilot groups.</div>
+              </label>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="sample_size_available" value="30_to_100" class="form-check-input me-2">
+                <strong>30 - 100</strong>
+                <div class="text-muted small mt-1">Classroom cohorts or experiments.</div>
+              </label>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="sample_size_available" value="over_100" class="form-check-input me-2">
+                <strong>100+</strong>
+                <div class="text-muted small mt-1">Large-scale quantitative sample.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dimension 5: Time Available -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">6. Total Time Available <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-3 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="time_available" value="under_1_month" required class="form-check-input me-2">
+                <strong>&lt; 1 Month</strong>
+                <div class="text-muted small mt-1">Rapid deadline; high urgency.</div>
+              </label>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="time_available" value="1_to_3_months" class="form-check-input me-2">
+                <strong>1 - 3 Months</strong>
+                <div class="text-muted small mt-1">Standard semester project.</div>
+              </label>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="time_available" value="3_to_6_months" class="form-check-input me-2">
+                <strong>3 - 6 Months</strong>
+                <div class="text-muted small mt-1">Two-semester or master's thesis.</div>
+              </label>
+            </div>
+            <div class="col-md-3 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="time_available" value="over_6_months" class="form-check-input me-2">
+                <strong>6+ Months</strong>
+                <div class="text-muted small mt-1">Long-term dissertation or grant.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dimension 6: Budget -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">7. Available Financial Budget <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="budget" value="low" required class="form-check-input me-2">
+                <strong>Low / Zero Budget</strong>
+                <div class="text-muted small mt-1">Self-funded, student resources, free digital tools.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="budget" value="medium" class="form-check-input me-2">
+                <strong>Medium</strong>
+                <div class="text-muted small mt-1">Modest participant stipends, transcription, software licenses.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="budget" value="high" class="form-check-input me-2">
+                <strong>High</strong>
+                <div class="text-muted small mt-1">Funded laboratory, specialized hardware, travel.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dimension 7: Participant Access -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">8. Ease of Access to Target Participants <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="participant_access" value="easy" required class="form-check-input me-2">
+                <strong>Easy Access</strong>
+                <div class="text-muted small mt-1">Direct access to peers, colleagues, or readily available communities.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="participant_access" value="difficult" class="form-check-input me-2">
+                <strong>Difficult Access</strong>
+                <div class="text-muted small mt-1">Gatekeepers, executive leaders, vulnerable or clinical populations.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="participant_access" value="none_secondary_only" class="form-check-input me-2">
+                <strong>None (Secondary Only)</strong>
+                <div class="text-muted small mt-1">Relying solely on published literature, public datasets, or archives.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="button" class="btn btn-outline-secondary px-4" onclick="goToStep(1)">
+            <i class="bi bi-arrow-left me-1"></i> Back
+          </button>
+          <button type="button" class="btn btn-primary btn-lg px-4" onclick="goToStep(3)">
+            Continue to Context & Ethics <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= STEP 3: CONTEXT & GOVERNANCE ================= -->
+      <div id="step3" class="wizard-pane d-none">
+        <h4 class="fw-bold mb-3 text-primary"><i class="bi bi-shield-check me-2"></i>Step 3: Context, Domain & Ethics</h4>
+        <p class="text-muted small mb-4">Complete study setup with timeframe characteristics, academic domain, and ethical considerations.</p>
+
+        <!-- Dimension 9: Study Timeframe -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">9. Temporal Nature of Study <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="study_timeframe" value="one_time" required class="form-check-input me-2">
+                <strong>One-Time (Cross-Sectional)</strong>
+                <div class="text-muted small mt-1">Data collected at a single distinct point in time.</div>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="study_timeframe" value="over_time" class="form-check-input me-2">
+                <strong>Over Time (Longitudinal / Iterative)</strong>
+                <div class="text-muted small mt-1">Repeated observations, multi-wave intervals, or iterative cycles.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dimension 10: Academic Domain -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">10. Academic Discipline / Domain <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-4 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="domain" value="engineering" required class="form-check-input me-2">
+                <strong>Engineering / CS</strong>
+                <div class="text-muted small mt-1">Software, systems, algorithms, hardware.</div>
+              </label>
+            </div>
+            <div class="col-md-4 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="domain" value="management" class="form-check-input me-2">
+                <strong>Management / Business</strong>
+                <div class="text-muted small mt-1">Organizational behavior, strategy, marketing.</div>
+              </label>
+            </div>
+            <div class="col-md-4 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="domain" value="education" class="form-check-input me-2">
+                <strong>Education</strong>
+                <div class="text-muted small mt-1">Pedagogy, learning outcomes, curriculum.</div>
+              </label>
+            </div>
+            <div class="col-md-4 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="domain" value="health" class="form-check-input me-2">
+                <strong>Health / Biomedical</strong>
+                <div class="text-muted small mt-1">Clinical trials, public health, therapy.</div>
+              </label>
+            </div>
+            <div class="col-md-4 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="domain" value="social_science" class="form-check-input me-2">
+                <strong>Social Science</strong>
+                <div class="text-muted small mt-1">Sociology, psychology, political science.</div>
+              </label>
+            </div>
+            <div class="col-md-4 col-6">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="domain" value="other" class="form-check-input me-2">
+                <strong>Other Discipline</strong>
+                <div class="text-muted small mt-1">Interdisciplinary inquiries.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dimension 11: Ethical Sensitivity -->
+        <div class="mb-4">
+          <label class="form-label fw-semibold">11. Ethical Sensitivity / Vulnerability <span class="text-danger">*</span></label>
+          <div class="row g-2">
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="ethical_sensitivity" value="low" required class="form-check-input me-2">
+                <strong>Low Sensitivity</strong>
+                <div class="text-muted small mt-1">Standard adult surveys, public documents, technical benchmarks.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="ethical_sensitivity" value="medium" class="form-check-input me-2">
+                <strong>Medium Sensitivity</strong>
+                <div class="text-muted small mt-1">Workplace attitudes, student evaluations, non-invasive observations.</div>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <label class="custom-card p-3 d-block h-100 cursor-pointer">
+                <input type="radio" name="ethical_sensitivity" value="high" class="form-check-input me-2">
+                <strong>High Sensitivity</strong>
+                <div class="text-muted small mt-1">Vulnerable populations (minors, patients), confidential data, clinical trials.</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <button type="button" class="btn btn-outline-secondary px-4" onclick="goToStep(2)">
+            <i class="bi bi-arrow-left me-1"></i> Back
+          </button>
+          <button type="submit" class="btn btn-success btn-lg px-5 shadow-sm fw-bold">
+            <i class="bi bi-check2-circle me-1"></i> Generate Recommendations
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  let currentStep = 1;
+
+  function goToStep(step) {
+    // Validation before advancing from Step 1
+    if (step > 1 && currentStep === 1) {
+      const title = document.querySelector('input[name="study_title"]');
+      if (!title.value.trim()) {
+        alert("Please provide your Study Title / Topic before proceeding.");
+        title.focus();
+        return;
+      }
+      const reqFields = ['research_objective', 'data_type', 'control_over_variables', 'existing_theory'];
+      for (const f of reqFields) {
+        if (!document.querySelector(`input[name="${f}"]:checked`)) {
+          alert(`Please select an option for question ${f.replace(/_/g, ' ')}.`);
+          return;
+        }
+      }
+    }
+
+    // Validation before advancing from Step 2
+    if (step > 2 && currentStep === 2) {
+      const reqFields = ['sample_size_available', 'time_available', 'budget', 'participant_access'];
+      for (const f of reqFields) {
+        if (!document.querySelector(`input[name="${f}"]:checked`)) {
+          alert(`Please select an option for question ${f.replace(/_/g, ' ')}.`);
+          return;
+        }
+      }
+    }
+
+    // Hide all panes
+    document.getElementById('step1').classList.add('d-none');
+    document.getElementById('step2').classList.add('d-none');
+    document.getElementById('step3').classList.add('d-none');
+
+    // Show target pane
+    document.getElementById(`step${step}`).classList.remove('d-none');
+
+    // Update stepper nodes
+    for (let i = 1; i <= 3; i++) {
+      const node = document.getElementById(`node${i}`);
+      node.classList.remove('active', 'completed');
+      if (i < step) {
+        node.classList.add('completed');
+        node.innerHTML = '<i class="bi bi-check-lg"></i>';
+      } else if (i === step) {
+        node.classList.add('active');
+        node.innerText = i;
+      } else {
+        node.innerText = i;
+      }
+    }
+
+    currentStep = step;
+    window.scrollTo({ top: 100, behavior: 'smooth' });
+  }
+</script>
+{% endblock %}

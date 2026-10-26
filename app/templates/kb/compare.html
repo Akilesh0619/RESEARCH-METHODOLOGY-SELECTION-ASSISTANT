@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Compare Research Methodologies - MethodAssist{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+  <div>
+    <h2 class="fw-bold mb-1">Side-by-Side Methodology Comparison</h2>
+    <p class="text-muted mb-0">Directly contrast assumptions, trade-offs, timelines, and costs across 2 to 3 research designs.</p>
+  </div>
+  <a href="/kb" class="btn btn-outline-secondary">
+    <i class="bi bi-arrow-left me-1"></i> Back to Catalog
+  </a>
+</div>
+
+<!-- Selector Form -->
+<div class="custom-card p-3 mb-4">
+  <form method="get" action="/compare" class="row g-2 align-items-end">
+    <div class="col-md-3 col-sm-6">
+      <label class="form-label small fw-semibold text-muted">Method 1</label>
+      <select name="m1" class="form-select form-select-sm">
+        {% for m in all_methods %}
+          <option value="{{ m.id }}" {% if methods[0] and methods[0].id == m.id %}selected{% endif %}>{{ m.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <label class="form-label small fw-semibold text-muted">Method 2</label>
+      <select name="m2" class="form-select form-select-sm">
+        {% for m in all_methods %}
+          <option value="{{ m.id }}" {% if methods[1] and methods[1].id == m.id %}selected{% endif %}>{{ m.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <label class="form-label small fw-semibold text-muted">Method 3 (Optional)</label>
+      <select name="m3" class="form-select form-select-sm">
+        <option value="">-- None --</option>
+        {% for m in all_methods %}
+          <option value="{{ m.id }}" {% if methods[2] and methods[2].id == m.id %}selected{% endif %}>{{ m.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <button type="submit" class="btn btn-primary btn-sm w-100">
+        <i class="bi bi-arrow-repeat me-1"></i> Update Comparison
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Comparison Table -->
+<div class="custom-card overflow-hidden">
+  <div class="table-responsive">
+    <table class="table table-bordered mb-0 compare-table">
+      <thead>
+        <tr>
+          <th class="compare-row-header">Feature / Dimension</th>
+          {% for m in methods %}
+            <th class="text-center py-3" style="min-width: 280px; width: {{ 100 // methods|length }}%;">
+              <span class="badge badge-{{ m.category }} text-capitalize px-2 py-1 mb-1">
+                {{ m.category }}
+              </span>
+              <h5 class="fw-bold mb-1">{{ m.name }}</h5>
+              <span class="badge badge-draft" style="font-size:0.65rem;">
+                {{ m.status }}
+              </span>
+              <div class="mt-2">
+                <a href="/kb/{{ m.id }}" class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size:0.75rem;">
+                  Full Profile <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Best Used When -->
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-bullseye me-1 text-primary"></i> Primary Objective & Best Used When</td>
+          {% for m in methods %}
+            <td class="small">{{ m.best_used_when }}</td>
+          {% endfor %}
+        </tr>
+
+        <!-- Sample Size -->
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-people me-1 text-primary"></i> Sample Size Guidance</td>
+          {% for m in methods %}
+            <td class="small font-monospace">{{ m.sample_size_guidance }}</td>
+          {% endfor %}
+        </tr>
+
+        <!-- Time & Cost -->
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-hourglass-split me-1 text-warning"></i> Time Commitment</td>
+          {% for m in methods %}
+            <td class="text-center font-monospace fw-semibold text-capitalize">{{ m.time_required }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-cash me-1 text-success"></i> Financial Cost</td>
+          {% for m in methods %}
+            <td class="text-center font-monospace fw-semibold text-capitalize">{{ m.cost }}</td>
+          {% endfor %}
+        </tr>
+
+        <!-- Data Collection -->
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-collection me-1 text-primary"></i> Typical Data Collection</td>
+          {% for m in methods %}
+            <td>
+              <ul class="small ps-3 mb-0">
+                {% for dc in m.typical_data_collection %}
+                  <li>{{ dc }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+          {% endfor %}
+        </tr>
+
+        <!-- Data Analysis -->
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-calculator me-1 text-primary"></i> Typical Data Analysis</td>
+          {% for m in methods %}
+            <td>
+              <ul class="small ps-3 mb-0">
+                {% for at in m.typical_analysis_techniques %}
+                  <li>{{ at }}</li>
+                {% endfor %}
+              </ul>
+            </td>
+          {% endfor %}
+        </tr>
+
+        <!-- Key Strengths -->
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-check-circle me-1 text-success"></i> Key Strengths</td>
+          {% for m in methods %}
+            <td>
+              <ul class="small ps-3 mb-0 text-success">
+                {% for s in m.strengths %}
+                  <li><span class="text-dark">{{ s }}</span></li>
+                {% endfor %}
+              </ul>
+            </td>
+          {% endfor %}
+        </tr>
+
+        <!-- Limitations -->
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-exclamation-triangle me-1 text-danger"></i> Methodological Limitations</td>
+          {% for m in methods %}
+            <td>
+              <ul class="small ps-3 mb-0 text-danger">
+                {% for l in m.limitations %}
+                  <li><span class="text-dark">{{ l }}</span></li>
+                {% endfor %}
+              </ul>
+            </td>
+          {% endfor %}
+        </tr>
+
+        <!-- Ethical Considerations -->
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-shield-lock me-1 text-secondary"></i> Ethical Considerations</td>
+          {% for m in methods %}
+            <td class="small">{{ m.ethical_considerations }}</td>
+          {% endfor %}
+        </tr>
+
+        <!-- Suitable Domains -->
+        <tr>
+          <td class="compare-row-header"><i class="bi bi-tags me-1 text-secondary"></i> Suitable Domains</td>
+          {% for m in methods %}
+            <td>
+              {% for d in m.suitable_domains %}
+                <span class="pill-tag text-capitalize">{{ d }}</span>
+              {% endfor %}
+            </td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

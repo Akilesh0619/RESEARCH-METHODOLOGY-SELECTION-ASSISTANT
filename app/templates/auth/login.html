@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In - MethodAssist{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center py-4">
+  <div class="col-md-6 col-lg-5">
+    <div class="custom-card p-4 p-md-5">
+      <div class="text-center mb-4">
+        <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-inline-flex p-3 mb-2 fs-3">
+          <i class="bi bi-shield-lock-fill"></i>
+        </div>
+        <h3 class="fw-bold mb-1">Sign In</h3>
+        <p class="text-muted small">Access your student research sessions or faculty review queue.</p>
+      </div>
+
+      {% if error_message %}
+        <div class="alert alert-danger py-2 px-3 small mb-3">
+          <i class="bi bi-exclamation-triangle-fill me-1"></i> {{ error_message }}
+        </div>
+      {% endif %}
+
+      <form method="post" action="/auth/login" id="loginForm">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Username or Email</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi bi-person text-muted"></i></span>
+            <input type="text" name="username" id="usernameInput" class="form-control" placeholder="username" required>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label small fw-semibold">Password</label>
+          <div class="input-group">
+            <span class="input-group-text bg-white"><i class="bi bi-key text-muted"></i></span>
+            <input type="password" name="password" id="passwordInput" class="form-control" placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 py-2 mb-3 fw-semibold">
+          <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+        </button>
+      </form>
+
+      <!-- Quick Demo Login Presets -->
+      <div class="border-top pt-3 mt-3 text-center">
+        <span class="text-muted small fw-semibold d-block mb-2">College Demo Fast Login</span>
+        <div class="d-grid gap-2">
+          <button type="button" class="btn btn-outline-secondary btn-sm" onclick="quickFill('student', 'student123')">
+            <i class="bi bi-mortarboard me-1 text-primary"></i> Login as <strong>Student</strong> (student / student123)
+          </button>
+          <button type="button" class="btn btn-outline-secondary btn-sm" onclick="quickFill('faculty', 'faculty123')">
+            <i class="bi bi-person-workspace me-1 text-success"></i> Login as <strong>Faculty</strong> (faculty / faculty123)
+          </button>
+          <button type="button" class="btn btn-outline-secondary btn-sm" onclick="quickFill('admin', 'admin123')">
+            <i class="bi bi-shield-check me-1 text-danger"></i> Login as <strong>Admin</strong> (admin / admin123)
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function quickFill(user, pass) {
+    document.getElementById('usernameInput').value = user;
+    document.getElementById('passwordInput').value = pass;
+    document.getElementById('loginForm').submit();
+  }
+</script>
+{% endblock %}

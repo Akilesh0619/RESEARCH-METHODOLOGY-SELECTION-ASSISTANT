@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Faculty Review Queue - MethodAssist{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="fw-bold mb-1"><i class="bi bi-clipboard-check text-primary me-2"></i>Faculty Review Queue</h2>
+    <p class="text-muted mb-0">Evaluate and validate student research methodology recommendation sessions.</p>
+  </div>
+  <div class="d-flex gap-2 mt-3 mt-md-0">
+    <a href="/review/dashboard" class="btn btn-outline-primary">
+      <i class="bi bi-graph-up me-1"></i> Validation Dashboard
+    </a>
+    <a href="/review/export-csv" class="btn btn-outline-secondary">
+      <i class="bi bi-download me-1"></i> Export Dataset (CSV)
+    </a>
+  </div>
+</div>
+
+<!-- Status Filter Pills -->
+<div class="filter-bar mb-4">
+  <div class="d-flex flex-wrap gap-2 align-items-center">
+    <span class="text-muted small fw-semibold me-2"><i class="bi bi-funnel me-1"></i>Filter by Status:</span>
+    <a href="/review/queue?status=all" class="btn btn-sm {% if current_status == 'all' or not current_status %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill">
+      All <span class="badge bg-white text-dark ms-1">{{ status_counts.all }}</span>
+    </a>
+    <a href="/review/queue?status=pending" class="btn btn-sm {% if current_status == 'pending' %}btn-warning text-dark{% else %}btn-outline-warning text-dark{% endif %} rounded-pill">
+      <i class="bi bi-clock-history me-1"></i> Pending <span class="badge bg-dark text-white ms-1">{{ status_counts.pending }}</span>
+    </a>
+    <a href="/review/queue?status=approved" class="btn btn-sm {% if current_status == 'approved' %}btn-success{% else %}btn-outline-success{% endif %} rounded-pill">
+      <i class="bi bi-check-circle me-1"></i> Approved <span class="badge bg-white text-success ms-1">{{ status_counts.approved }}</span>
+    </a>
+    <a href="/review/queue?status=needs_revision" class="btn btn-sm {% if current_status == 'needs_revision' %}btn-info text-dark{% else %}btn-outline-info text-dark{% endif %} rounded-pill">
+      <i class="bi bi-pencil-square me-1"></i> Needs Revision <span class="badge bg-dark text-white ms-1">{{ status_counts.needs_revision }}</span>
+    </a>
+    <a href="/review/queue?status=rejected" class="btn btn-sm {% if current_status == 'rejected' %}btn-danger{% else %}btn-outline-danger{% endif %} rounded-pill">
+      <i class="bi bi-x-circle me-1"></i> Rejected <span class="badge bg-white text-danger ms-1">{{ status_counts.rejected }}</span>
+    </a>
+  </div>
+</div>
+
+<!-- Sessions Table / List -->
+<div class="custom-card overflow-hidden">
+  {% if sessions %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th scope="col" style="width: 80px;">ID</th>
+            <th scope="col">Study Title & Researcher</th>
+            <th scope="col">Domain</th>
+            <th scope="col">Recommended Method (Rank #1)</th>
+            <th scope="col">Review Status</th>
+            <th scope="col" class="text-end" style="width: 220px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in sessions %}
+            {% set top_m = s.suggested_methods[0] if s.suggested_methods else None %}
+            <tr>
+              <td>
+                <span class="badge bg-light text-dark border">#{{ s.id }}</span>
+              </td>
+              <td>
+                <a href="/review/session/{{ s.id }}" class="fw-bold text-decoration-none text-dark hover-primary d-block">
+                  {{ s.study_title }}
+                </a>
+                <span class="small text-muted">
+                  <i class="bi bi-person me-1"></i>{{ s.student_name }}
+                  <span class="mx-1">•</span>
+                  {{ s.created_at.strftime('%Y-%m-%d %H:%M') if s.created_at else '' }}
+                </span>
+              </td>
+              <td>
+                <span class="badge bg-light text-secondary border text-capitalize">
+                  {{ s.questionnaire_inputs.get('domain', 'General') }}
+                </span>
+              </td>
+              <td>
+                {% if top_m %}
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="badge badge-{{ top_m.method.category if top_m.method else 'mixed' }}">
+                      {{ top_m.method.name if top_m.method else top_m.method_id }}
+                    </span>
+                    <span class="small fw-semibold text-success">{{ top_m.match_percentage }}% match</span>
+                  </div>
+                {% else %}
+                  <span class="text-muted small">None</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if s.review_status == 'pending' %}
+                  <span class="badge bg-warning text-dark"><i class="bi bi-clock me-1"></i>Pending</span>
+                {% elif s.review_status == 'approved' %}
+                  <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Approved</span>
+                {% elif s.review_status == 'rejected' %}
+                  <span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i>Rejected</span>
+                {% elif s.review_status == 'needs_revision' %}
+                  <span class="badge bg-info text-dark"><i class="bi bi-pencil me-1"></i>Needs Revision</span>
+                {% endif %}
+              </td>
+              <td class="text-end">
+                <a href="/review/session/{{ s.id }}" class="btn btn-sm btn-primary">
+                  <i class="bi bi-pencil-square me-1"></i> Review
+                </a>
+                <a href="/results/{{ s.id }}" class="btn btn-sm btn-outline-secondary">
+                  <i class="bi bi-eye me-1"></i> Report
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="p-5 text-center text-muted">
+      <i class="bi bi-inbox fs-1 d-block mb-3 text-secondary"></i>
+      <h5 class="fw-semibold">No Research Sessions Found</h5>
+      <p class="small mb-3">No recommendation sessions match the selected filter criteria.</p>
+      <a href="/questionnaire" class="btn btn-primary btn-sm">
+        <i class="bi bi-magic me-1"></i> Run a Questionnaire Test
+      </a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
